@@ -1,5 +1,5 @@
 import '../../node_modules/normalize.css';
-import '../css/style2.css';
+import '../css/style.css';
 
 const movList = document.querySelector('.mov-list-container');
 const movImg = document.querySelector('.mov-img');
