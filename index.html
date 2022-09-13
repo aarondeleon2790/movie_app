@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie App</title>
+    <script defer type="module" src="src/js/main.js"></script>
+
+    
+  </head>
+  <body>
+    <div class="container">
+      <header class="main-header">
+        <div class="main-nav">
+          <!-- mobile menu -->
+          <!-- <button class="navbar-menu-btn">
+            <span class="one"></span>
+            <span class="two"></span>
+            <span class="three"></span>
+          </button> -->
+          <div class="logo">
+            <a href="#" class="navbar-logo">
+              <img src="src/img/icons/video.svg" alt="logo">
+               <!-- <img src="src/img/icons/video.svg" class="play"alt=""> -->
+            </a>
+          </div>
+
+          <!-- Categories -->
+          <ul class="nav-list">
+            <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Category1</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Category2</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Category3</a></li>
+           
+          </ul>
+
+          <!-- Search Bar -->
+          <div class="search-bar">
+            <form action="#" class="search-form">
+              <input
+                type="search"
+                name="search"
+                placeholder="Search Movie"
+                class="search-bar-input"
+              />
+              <button class="search-button">
+                <img src="src/img/icons/search-outline.svg" alt="search icon" class="search-icon">
+              </button>
+
+              <!-- <button class="navbar-form-close">
+                <ion-icon name="close-circle-outline"></ion-icon>
+              </button>
+            </form> -->
+
+            <!--
+            - search button for small screen
+          -->
+          </div>
+        </div>
+      </header>
+
+      <!-- main content  -->
+ 
+      <main>
+        <!-- utility class split by flex -->
+        <div class="split">
+        <section class="featured">
+          <div class="overlay"></div>
+          <div class="play">
+            
+          </div>
+            <div class="banner">
+              <!-- <img
+               src="./src/img/action.jpg"
+               class="banner-img"
+               alt=""
+               /> -->
+               <div class="trailer">
+                <iframe src="https://www.youtube.com/embed/DTBcGQWmQ1c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+               </div>
+              <div class="banner-content">
+                <h2 class="banner-title">John Wick: Chapter 3 - Parabellum</h2>
+               </div>
+             
+          </div>
+     
+        </section>
+
+
+        <aside class="feat-mov">
+          <div class="feat-mov-img">
+            <img src="./src/img/sci-fi.jpg" alt="movie description">
+          </div>
+          <div class="feat-mov-desc">
+            <h3>Jack Reacher 3</h3>
+            <p>Inventore repellat! Voluptates aspernatur eligendi adipisci totam unde? eos in dolorum qui iusto sequi culpa. Et, cupiditate?psum dolor sit amet consectetur adipisicing elit. Fugit sequi qui reprehenderit asperiores, maxime deleniti molestias illo tempora vitae, tenetur, eaque saepe? Eveniet, officia recusandae!</p>
+          </div>
+        </aside>
+      </div>
+
+      <!-- movie list popular -->
+      <section class="mov-list-popular">
+        <div class="mov-popular-bar"> 
+          <div class="radios">
+            <div class="radio-container">
+              <label for="featured">Featured</label>
+              <input type="radio" name="menu" id="featured" value="featured"/>
+              
+              
+              <label for="popular">Popular</label>
+              <input type="radio" name="menu" id="popular" value="popular" />
+              
+              <label for="new">New</label>
+              <input type="radio" name="menu" id="new" value="new"/>
+              
+
+              <div class="radio-overlay"></div>
+            
+            </div>
+        </div>
+        </div>
+        <div class="mov-list-container">
+        </div>
+      </section>
+      </main>
+      
+    </div>
+
+  </body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie App | Guide</title>
+
+    <script defer type="module" src="./src/js/main.js"></script>
+  </head>
+  <body>
+    <div class="container grid">
+      <header class="main-header">
+        <div class="logo">
+          <a href="#">Movie App</a>
+        </div>
+        <div class="search-bar">
+          <label for="search" class="search-label">Go</label>
+          <input
+            type="search"
+            name="search"
+            id=""
+            placeholder="search a movie"
+            class="search-input"
+          />
+        </div>
+      </header>
+      <nav class="nav-bar">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="#" class="nav-links">icon1</a></li>
+          <li class="nav-item"><a href="#" class="nav-links">icon2</a></li>
+          <li class="nav-item"><a href="#" class="nav-links">icon3</a></li>
+          <li class="nav-item"><a href="#" class="nav-links">icon4</a></li>
+        </ul>
+      </nav>
+      <div class="feature-selection">
+        <ul class="category-list">
+          <li class="category-item">
+            <a href="" class="category-links">Popular</a>
+          </li>
+          <li class="category-item">
+            <a href="" class="category-links">Movies</a>
+          </li>
+          <li class="category-item">
+            <a href="" class="category-links">Tv Shows</a>
+          </li>
+          <li class="category-item">
+            <a href="" class="category-links">Horror</a>
+          </li>
+          <li class="category-item">
+            <a href="" class="category-links">Comedy</a>
+          </li>
+        </ul>
+      </div>
+      <main class="main-feature">
+        <div class="featured-movie">
+          <img
+            src="https://images.tmdb.org/t/p/w1280/uQBbjrLVsUibWxNDGA4Czzo8lwz.jpg"
+            alt="movie title trailer"
+          />
+          <div class="this"></div>
+        </div>
+      </main>
+      <aside class="side-feature">
+        <div class="featured-description">
+          <div class="side-img">
+            <img
+              src="https://images.tmdb.org/t/p/w1280/uQBbjrLVsUibWxNDGA4Czzo8lwz.jpg"
+              alt="movie title trailer"
+            />
+          </div>
+          <div class="side-text">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit,
+              quas voluptatum pariatur dignissimos voluptates aperiam aspernatur
+              similique necessitatibus soluta dolor Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Repellendus, maxime..
+            </p>
+          </div>
+        </div>
+      </aside>
+      <section class="movie-list">
+        <div class="movies">
+          <p>lorem10</p>
+        </div>
+      </section>
+    </div>
+  </body>
+</html> -->
+
+<!-- 
+
+side-nav    header           header
+side-nav    main-content     side content
+side-nav    movie-list       movie list
+
+ -->
