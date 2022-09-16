@@ -1,5 +1,7 @@
 import '../../node_modules/normalize.css';
 import '../css/style.css';
+import * as PopularMod from './models/popularMod.js';
+import PopularView from './views/popularView.js';
 
 const movList = document.querySelector('.mov-list-container');
 const movImg = document.querySelector('.mov-img');
@@ -7,58 +9,49 @@ const banner = document.querySelector('.banner');
 // if (module.hot) {
 //   module.hot.accept();
 // }
-const YOUTUBEID = '58ba538dc3a368668f0148b8';
-const APIKEY = '04c35731a5ee918f014970082a0088b1';
-const IMGURL = 'https://images.tmdb.org/t/p/w1280';
-const APIURL = 'https://api.themoviedb.org/3/';
-const TRAILER =
-  'https://api.themoviedb.org/3/movie/343611?api_key=04c35731a5ee918f014970082a0088b1&append_to_response=videos';
 
-window.onload = getMovies();
-// window.onload = getTrailer();
+(async function () {
+  await PopularMod.getPopular();
+  PopularView.render(PopularMod.state.popular);
+})();
 
-async function getTrailer() {
-  const res = await fetch(TRAILER);
-  const data = await res.json();
-}
+// async function getMovies() {
+//   window.location.hash = '';
+//   try {
+//     //prettier-ignore
+//     const res = await fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${APIKEY}&page=1`);
+//     const data = await res.json();
+//     if (!res.ok) throw new Error('something went wrong');
+//     console.log(data);
+//     displayMovies(data);
+//   } catch (err) {
+//     console.error(err.message);
+//   }
+// }
 
-async function getMovies() {
-  window.location.hash = '';
-  try {
-    //prettier-ignore
-    const res = await fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${APIKEY}&page=1`);
-    const data = await res.json();
-    if (!res.ok) throw new Error('something went wrong');
-    console.log(data);
-    displayMovies(data);
-  } catch (err) {
-    console.error(err.message);
-  }
-}
-
-function displayMovies(data) {
-  const { results } = data;
-  const movListItem = results
-    .map(mov => {
-      const title = mov.title ?? mov.name;
-      return ` <div class="mov-list-card">
-      <div class="mov-img-container">
-        <a href="#${mov.id}">
-        <img class="mov-img" src="${
-          IMGURL + mov.poster_path
-        }" alt="poster image of ${title}">
-        <a/>
-      </div>
-      <div class="mov-list-description">
-        <h3>${title}</h3>
-        <p>Genre / ${mov.release_date}</p>
-      </div>
-      </div>`;
-    })
-    .join('');
-  movList.innerHTML = '';
-  movList.insertAdjacentHTML('afterbegin', movListItem);
-}
+// function displayMovies(data) {
+//   const { results } = data;
+//   const movListItem = results
+//     .map(mov => {
+//       const title = mov.title ?? mov.name;
+//       return ` <div class="mov-list-card">
+//       <div class="mov-img-container">
+//         <a href="#${mov.id}">
+//         <img class="mov-img" src="${
+//           IMGURL + mov.poster_path
+//         }" alt="poster image of ${title}">
+//         <a/>
+//       </div>
+//       <div class="mov-list-description">
+//         <h3>${title}</h3>
+//         <p>Genre / ${mov.release_date}</p>
+//       </div>
+//       </div>`;
+//     })
+//     .join('');
+//   movList.innerHTML = '';
+//   movList.insertAdjacentHTML('afterbegin', movListItem);
+// }
 
 //results > array(2)
 //backdrop_path: "/5QEtCBM6aXHftr7sgFxxUUl9Ej8.jpg"
