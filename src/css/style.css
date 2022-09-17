@@ -171,19 +171,14 @@ img {
 
 /* MAIN CONTENT */
 
-/* .banner {
+.banner img {
+  max-width: 100%;
+  object-fit: cover;
 }
 
-.banner img {
-  width: 70%;
-  aspect-ratio: 1/1;
-  height: 100%;
-  object-fit: cover;
-} */
-
-/* .banner {
-  margin-bottom: 60px;
-} */
+.banner {
+  /* margin-bottom: 60px; */
+}
 
 .featured {
   flex: 75%;

@@ -1,4 +1,4 @@
-import { APIKEY } from '../config.js';
+import { APIKEY, APIURL } from '../config.js';
 
 export const state = {
   popular: {},
@@ -7,10 +7,11 @@ export const state = {
 export async function getPopular() {
   try {
     //prettier-ignore
-    const res = await fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${APIKEY}&page=1`);
+    const res = await fetch(`${APIURL}trending/all/week?api_key=${APIKEY}&page=1`);
     const data = await res.json();
     if (!res.ok) throw new Error('something went wrong');
     const { results } = data;
+    console.log(data);
     state.popular = results.map(mov => {
       return {
         id: mov.id,
@@ -20,6 +21,7 @@ export async function getPopular() {
         poster: mov.poster_path,
         backdrop: mov.backdrop_path,
         overview: mov.overview,
+        media: mov.media_type,
       };
     });
   } catch (err) {

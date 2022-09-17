@@ -2,6 +2,8 @@ import '../../node_modules/normalize.css';
 import '../css/style.css';
 import * as PopularMod from './models/popularMod.js';
 import PopularView from './views/popularView.js';
+import * as TrailerMod from './models/trailerMod.js';
+import TrailerView from './views/trailerView';
 
 const movList = document.querySelector('.mov-list-container');
 const movImg = document.querySelector('.mov-img');
@@ -81,64 +83,77 @@ radio.addEventListener('click', function (e) {
 });
 
 //hash change event
+//change haschange event to click event on movies
+// window.addEventListener('hashchange', async () => {
+//   window.scrollTo({ top: 0 });
+//   const id = window.location.hash.slice(1);
+//   await TrailerMod.getTrailer(id);
+//   TrailerView.render(TrailerMod.state.trailer);
+// });
 
-window.addEventListener('hashchange', async () => {
-  window.scrollTo({ top: 0 });
-  const id = window.location.hash.slice(1);
-  const data = await getTrailer(id);
-  displayTrailer(data);
-});
-
-async function getTrailer(id) {
-  try {
-    // prettier-ignore
-    let res = await fetch(`${APIURL}/movie/${id}?api_key=${APIKEY}&append_to_response=videos`);
-    if (!res.ok) {
-      res = await fetch(
-        `${APIURL}/tv/${id}?api_key=${APIKEY}&append_to_response=videos`
-      );
-    }
-    const data = await res.json();
-    return data;
-  } catch (err) {
-    alert('this');
-  }
-}
-
-function displayTrailer(data) {
-  // title, videos > results
-  //prettier-ignore
-  console.log(data)
-  const {
-    title,
-    videos: { results },
-  } = data;
-
-  if (results.length === 0) {
-    banner.innerHTML = '';
-    const noDataMarkup = `
-      <div class="no-data">
-        <h3>Video not Available</h3>
-      </div>
-    `;
-    banner.insertAdjacentHTML('afterbegin', noDataMarkup);
+movList.addEventListener('click', async e => {
+  if(!e.target.classList.contains('mov-img')) {
     return;
   }
-  const official = results.find(e => {
-    return e.name === 'Official Trailer';
-  });
-  const { key } = !official ? results[0] : official;
+  
+  // const id = window.location.hash.slice(1);
+  const id = e.target.getAttribute('id');
+  const media = e.target.getAttribute('data-media');
+  await TrailerMod.getTrailer(id,media);
+  TrailerView.render(TrailerMod.state.trailer);
+  window.scrollTo({top: 0});
+})
 
-  banner.innerHTML = '';
-  const markup = `
-  <div class="trailer">
-    <iframe src="https://www.youtube.com/embed/${key}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  </div>
-  <div class="banner-content">
-    <h2 class="banner-title">${title}</h2>
-  </div>`;
-  banner.insertAdjacentHTML('afterbegin', markup);
-}
+// async function getTrailer(id) {
+//   try {
+//     // prettier-ignore
+//     let res = await fetch(`${APIURL}/movie/${id}?api_key=${APIKEY}&append_to_response=videos`);
+//     if (!res.ok) {
+//       res = await fetch(
+//         `${APIURL}/tv/${id}?api_key=${APIKEY}&append_to_response=videos`
+//       );
+//     }
+//     const data = await res.json();
+//     return data;
+//   } catch (err) {
+//     alert('this');
+//   }
+// }
+
+// function displayTrailer(data) {
+// title, videos > results
+//prettier-ignore
+//   console.log(data)
+//   const {
+//     title,
+//     videos: { results },
+//   } = data;
+
+//   if (results.length === 0) {
+//     banner.innerHTML = '';
+//     const noDataMarkup = `
+//       <div class="no-data">
+//         <h3>Video not Available</h3>
+//       </div>
+//     `;
+//     banner.insertAdjacentHTML('afterbegin', noDataMarkup);
+//     return;
+//   }
+//   const official = results.find(e => {
+//     return e.name === 'Official Trailer';
+//   });
+//   const { key } = !official ? results[0] : official;
+
+//   banner.innerHTML = '';
+//   const markup = `
+//   <div class="trailer">
+//     <iframe src="https://www.youtube.com/embed/${key}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+//   </div>
+//   <div class="banner-content">
+//     <h2 class="banner-title">${title}</h2>
+//   </div>`;
+//   banner.insertAdjacentHTML('afterbegin', markup);
+// }
 
 /*
 <iframe width="560" height="315" src="https://www.youtube.com/embed/U7itlR6qESM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
