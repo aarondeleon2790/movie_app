@@ -34,6 +34,6 @@ export async function getTrailer(id, mov) {
       key,
     };
   } catch (err) {
-    alert('this');
+    alert(err);
   }
 }
