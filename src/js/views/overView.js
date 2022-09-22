@@ -10,15 +10,15 @@ class OverView {
     this.#containerEl.insertAdjacentHTML('afterbegin', markup);
   }
   #generateMarkup() {
+    // refactor to short circuiting
+    const title = this.#data.title ? this.#data.title : this.#data.name;
     return `
     <div class="feat-mov-img">
-      <img src="${IMGURL}${
-      this.#data.backdrop
-    }alt="movie image with description">
+      <img src="${IMGURL}${this.#data.backdrop}" alt="${title}">
     </div>
     <div class="feat-mov-desc">
-      <h3>Jack Reacher 3</h3>
-      <p>Inventore repellat! Voluptates aspernatur eligendi adipisci totam unde? eos in dolorum qui iusto sequi culpa. Et, cupiditate?psum dolor sit amet consectetur adipisicing elit. Fugit sequi qui reprehenderit asperiores, maxime deleniti molestias illo tempora vitae, tenetur, eaque saepe? Eveniet, officia recusandae!</p>
+      <h3>${title}</h3>
+      <p>${this.#data.overview}</p>
     </div>
     `;
   }
