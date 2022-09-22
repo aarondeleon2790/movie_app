@@ -1,15 +1,15 @@
-import { IMGURL } from '../config.js';
 class TrailerView {
   #containerEl = document.querySelector('.banner');
   #data;
 
   render(data) {
     this.#data = data;
+    const markup = this.#generateMarkup();
     this.#containerEl.innerHTML = '';
-    this.#containerEl.insertAdjacentHTML('afterbegin', this.generateMarkup());
+    this.#containerEl.insertAdjacentHTML('afterbegin', markup);
   }
 
-  generateMarkup() {
+  #generateMarkup() {
     if (!this.#data.key.key) {
       return `
         <div class="no-data">
@@ -25,6 +25,17 @@ class TrailerView {
     <div class="banner-content">
      <h2 class="banner-title">${this.#data.title}</h2>
     </div>`;
+  }
+
+  // eventHandler(callback) {
+  //   this.#eventContainer.addEventListener('click', e => {
+  //     const id = e.target.getAttribute('id');
+  //     const media = e.target.getAttribute('data-media');
+  //     callback(id, media);
+  //   });
+  // }
+  eventHandler(callback) {
+    window.addEventListener('hashchange', callback);
   }
 }
 export default new TrailerView();

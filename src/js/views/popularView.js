@@ -1,16 +1,16 @@
 import { IMGURL } from '../config.js';
 
-class popularView {
+class PopularView {
   #containerEl = document.querySelector('.mov-list-container');
   #data;
   render(data) {
     this.#data = data;
-    const markup = this.generateMarkup();
+    const markup = this.#generateMarkup();
     this.#containerEl.innerHTML = '';
     this.#containerEl.insertAdjacentHTML('afterbegin', markup);
   }
 
-  generateMarkup() {
+  #generateMarkup() {
     return this.#data
       .map(mov => {
         const title = mov.title ?? mov.name;
@@ -36,4 +36,4 @@ class popularView {
   }
 }
 
-export default new popularView();
+export default new PopularView();

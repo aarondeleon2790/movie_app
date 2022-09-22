@@ -1,22 +1,22 @@
+import * as popularMod from './popularMod.js';
 import { APIURL, APIKEY } from '../config';
+import { getJSON } from '../helper.js';
 
 export const state = {
   trailer: {},
 };
 
-export async function getTrailer(id, mov) {
+export async function getTrailer(hash) {
   try {
+    const srcData = popularMod.state.popular;
+    const rand = Math.trunc(Math.random() * srcData.length);
+    const id = hash ? hash : srcData[rand].id;
+    const movData = srcData.find(v => v.id === Number(id));
+    const { media } = movData;
     // prettier-ignore
-    let res = await fetch(`${APIURL}/${mov}/${id}?api_key=${APIKEY}&append_to_response=videos`);
-    // if (!res.ok) {
-    //   res = await fetch(
-    //     `${APIURL}/tv/${id}?api_key=${APIKEY}&append_to_response=videos`
-    //   );
-    // }
-    if (!res.ok) throw new Error('something went wrong');
-    const data = await res.json();
+    const data = await getJSON(`${APIURL}/${media}/${id}?api_key=${APIKEY}&append_to_response=videos`)
     //prettier-ignore
-    const { poster_path, title, videos: { results }} = data;
+    const { backdrop_path, name, overview, poster_path, title, videos: { results }} = data;
     if (results.length === 0) {
       state.trailer = {
         title,
@@ -32,6 +32,10 @@ export async function getTrailer(id, mov) {
     state.trailer = {
       title,
       key,
+      backdrop: backdrop_path,
+      name,
+      overview,
+      img: poster_path,
     };
   } catch (err) {
     alert(err);

@@ -1,8 +1,8 @@
 import '../../node_modules/normalize.css';
 import '../css/style.css';
-import * as PopularMod from './models/popularMod.js';
+import * as popularMod from './models/popularMod.js';
+import * as trailerMod from './models/trailerMod.js';
 import PopularView from './views/popularView.js';
-import * as TrailerMod from './models/trailerMod.js';
 import TrailerView from './views/trailerView';
 
 const movList = document.querySelector('.mov-list-container');
@@ -11,11 +11,6 @@ const banner = document.querySelector('.banner');
 // if (module.hot) {
 //   module.hot.accept();
 // }
-
-(async function () {
-  await PopularMod.getPopular();
-  PopularView.render(PopularMod.state.popular);
-})();
 
 // async function getMovies() {
 //   window.location.hash = '';
@@ -91,19 +86,54 @@ radio.addEventListener('click', function (e) {
 //   TrailerView.render(TrailerMod.state.trailer);
 // });
 
-movList.addEventListener('click', async e => {
-  if(!e.target.classList.contains('mov-img')) {
-    return;
-  }
-  
-  // const id = window.location.hash.slice(1);
-  const id = e.target.getAttribute('id');
-  const media = e.target.getAttribute('data-media');
-  await TrailerMod.getTrailer(id,media);
-  TrailerView.render(TrailerMod.state.trailer);
-  window.scrollTo({top: 0});
-})
+// async function displayTrailer(id, media) {
+//   await trailermod.getTrailer(id, media);
+//   TrailerView.render(trailermod.state.trailer);
+//   window.scrollTo({ top: 0 });
+// }
 
+// movList.addEventListener('click', async e => {
+//   if (!e.target.classList.contains('mov-img')) {
+//     return;
+//   }
+
+//   const id = e.target.getAttribute('id');
+//   const media = e.target.getAttribute('data-media');
+//   await trailermod.getTrailer(id, media);
+//   TrailerView.render(trailermod.state.trailer);
+//   window.scrollTo({ top: 0 });
+// });
+
+// ['load', 'hashchange'].forEach(ev => {
+//   window.addEventListener(ev, eventHandlers);
+// });
+
+async function loadPopular() {
+  await popularMod.getPopular();
+  PopularView.render(popularMod.state.popular);
+}
+
+async function onLoadHashTrailer() {
+  const hash = window.location.hash.slice(1);
+  await trailerMod.getTrailer(hash);
+  TrailerView.render(trailerMod.state.trailer);
+}
+
+async function loadTrailer() {
+  const id = window.location.hash.slice(1);
+  await trailerMod.getTrailer(id);
+  console.log(trailerMod.state.trailer);
+  TrailerView.render(trailerMod.state.trailer);
+  window.scrollTo({ top: 0 });
+}
+
+async function init() {
+  await loadPopular();
+  await onLoadHashTrailer();
+  TrailerView.eventHandler(loadTrailer);
+}
+
+init();
 // async function getTrailer(id) {
 //   try {
 //     // prettier-ignore

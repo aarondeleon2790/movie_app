@@ -1,4 +1,5 @@
 import { APIKEY, APIURL } from '../config.js';
+import { getJSON } from '../helper.js';
 
 export const state = {
   popular: {},
@@ -6,12 +7,10 @@ export const state = {
 
 export async function getPopular() {
   try {
-    //prettier-ignore
-    const res = await fetch(`${APIURL}trending/all/week?api_key=${APIKEY}&page=1`);
-    const data = await res.json();
-    if (!res.ok) throw new Error('something went wrong');
+    const data = await getJSON(
+      `${APIURL}trending/all/week?api_key=${APIKEY}&page=1`
+    );
     const { results } = data;
-    console.log(data);
     state.popular = results.map(mov => {
       return {
         id: mov.id,
@@ -25,6 +24,6 @@ export async function getPopular() {
       };
     });
   } catch (err) {
-    console.log(err.message);
+    alert(err.message);
   }
 }
