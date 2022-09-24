@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie App</title>
-    <script defer type="module" src="src/js/main.js"></script>
+    <script defer type="module" src="src/js/controller.js"></script>
 
     
   </head>
@@ -32,7 +32,6 @@
             <li class="nav-item"><a href="#" class="nav-link">Category1</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Category2</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Category3</a></li>
-           
           </ul>
 
           <!-- Search Bar -->
@@ -44,9 +43,10 @@
                 placeholder="Search Movie"
                 class="search-bar-input"
               />
-              <button class="search-button">
+              <button type="submit" class="search-button">
                 <img src="src/img/icons/search-outline.svg" alt="search icon" class="search-icon">
               </button>
+            </form>
 
               <!-- <button class="navbar-form-close">
                 <ion-icon name="close-circle-outline"></ion-icon>
@@ -65,38 +65,19 @@
       <main>
         <!-- utility class split by flex -->
         <div class="split">
-        <section class="featured">
-          <div class="overlay"></div>
-          <div class="play">
-            
-          </div>
+          <div class="featured">
+            <!-- <div class="overlay"></div> -->
             <div class="banner">
               <!-- <img
                src="./src/img/action.jpg"
                class="banner-img"
                alt=""
                /> -->
-               <div class="trailer">
-                <iframe src="https://www.youtube.com/embed/DTBcGQWmQ1c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-               </div>
-              <div class="banner-content">
-                <h2 class="banner-title">John Wick: Chapter 3 - Parabellum</h2>
-               </div>
-             
+            </div>
           </div>
-     
-        </section>
-
-
-        <aside class="feat-mov">
-          <div class="feat-mov-img">
-            <img src="./src/img/sci-fi.jpg" alt="movie description">
+        <div class="feat-mov">
           </div>
-          <div class="feat-mov-desc">
-            <h3>Jack Reacher 3</h3>
-            <p>Inventore repellat! Voluptates aspernatur eligendi adipisci totam unde? eos in dolorum qui iusto sequi culpa. Et, cupiditate?psum dolor sit amet consectetur adipisicing elit. Fugit sequi qui reprehenderit asperiores, maxime deleniti molestias illo tempora vitae, tenetur, eaque saepe? Eveniet, officia recusandae!</p>
-          </div>
-        </aside>
+        </div>
       </div>
 
       <!-- movie list popular -->
