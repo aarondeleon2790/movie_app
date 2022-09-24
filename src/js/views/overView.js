@@ -12,9 +12,10 @@ class OverView {
   #generateMarkup() {
     // refactor to short circuiting
     const title = this.#data.title ? this.#data.title : this.#data.name;
+    const img = this.#data.backdrop ? this.#data.backdrop : this.#data.img;
     return `
     <div class="feat-mov-img">
-      <img src="${IMGURL}${this.#data.backdrop}" alt="${title}">
+      <img src="${IMGURL}${img}" alt="${title}">
     </div>
     <div class="feat-mov-desc">
       <h3>${title}</h3>

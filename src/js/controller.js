@@ -5,7 +5,8 @@ import * as trailerMod from './models/trailerMod.js';
 import PopularView from './views/popularView.js';
 import TrailerView from './views/trailerView';
 import OverView from './views/overView';
-import overView from './views/overView';
+import SearchView from './views/searchView';
+
 const movList = document.querySelector('.mov-list-container');
 const movImg = document.querySelector('.mov-img');
 const banner = document.querySelector('.banner');
@@ -130,10 +131,18 @@ async function loadTrailer() {
   window.scrollTo({ top: 0 });
 }
 
+async function loadSearch(query) {
+  if (!query) return;
+  await popularMod.searchQuery(query);
+  if (popularMod.state.search.length === 0) return;
+  PopularView.render(popularMod.state.search);
+}
+
 async function init() {
   await loadPopular();
   await onLoadHashTrailer();
   TrailerView.eventHandler(loadTrailer);
+  SearchView.eventHandler(loadSearch);
 }
 
 init();

@@ -21,9 +21,7 @@ class PopularView {
           <a href="#${mov.id}">
           <img class="mov-img" src="${
             IMGURL + mov.poster
-          }" alt="poster image of ${title}" id="${mov.id}"  data-media="${
-          mov.media
-        }">
+          }" alt="poster image of ${title}" id="${mov.id}"  data-media="movie">
           <a/>
         </div>
         <div class="mov-list-description">

@@ -11,17 +11,18 @@ export async function getTrailer(hash) {
     const srcData = popularMod.state.popular;
     const rand = Math.trunc(Math.random() * srcData.length);
     const id = hash ? hash : srcData[rand].id;
-    const movData = srcData.find(v => v.id === Number(id));
-    const { media } = movData;
+    // const movData = srcData.find(v => v.id === Number(id));
+    // const { media } = movData;
     // prettier-ignore
-    const data = await getJSON(`${APIURL}/${media}/${id}?api_key=${APIKEY}&append_to_response=videos`)
+    const data = await getJSON(`${APIURL}movie/${id}?api_key=${APIKEY}&append_to_response=videos`)
     //prettier-ignore
-    const { backdrop_path, name, overview, poster_path, title, videos: { results }} = data;
+    const { path, backdrop_path,name,overview,poster_path,title,videos: { results }} = data;
     if (results.length === 0) {
       state.trailer = {
         title,
         key: { key: false },
-        path: poster_path,
+        img: poster_path,
+        overview,
       };
       return;
     }
