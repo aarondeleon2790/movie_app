@@ -5,7 +5,7 @@ class ResultView {
 
   render(data) {
     this.#data = data;
-    const markup = `<div class="result-title"><p>Search Results:</p></div><div class="search-split">${this.#generateMarkup()}</div>`;
+    const markup = this.#generateMarkup();
     this.#containerEl.innerHTML = '';
     this.#containerEl.insertAdjacentHTML('afterbegin', markup);
     this.#containerEl.classList.remove('hidden');
@@ -17,10 +17,10 @@ class ResultView {
       .map(v => {
         return `
         <div class="carousel-img">
-          <a href="#${v.id}">
-          <img class="carousel-img-link" src="${
-            IMGURL + v.poster
-          }" alt="poster image of ${v.title}" id="${v.id}"  data-media="movie">
+          <a href="#${v.id}" class="result-link">
+            <img class="result-img" src="${
+              IMGURL + v.poster
+            }" alt="poster image of ${v.title}" "data-media="movie">
           <a/>
         </div>`;
       })
