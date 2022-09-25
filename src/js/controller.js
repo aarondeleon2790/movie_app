@@ -6,7 +6,7 @@ import PopularView from './views/popularView.js';
 import TrailerView from './views/trailerView';
 import OverView from './views/overView';
 import SearchView from './views/searchView';
-
+import ResultView from './views/resultView';
 const movList = document.querySelector('.mov-list-container');
 const movImg = document.querySelector('.mov-img');
 const banner = document.querySelector('.banner');
@@ -135,7 +135,7 @@ async function loadSearch(query) {
   if (!query) return;
   await popularMod.searchQuery(query);
   if (popularMod.state.search.length === 0) return;
-  PopularView.render(popularMod.state.search);
+  ResultView.render(popularMod.state.search);
 }
 
 async function init() {

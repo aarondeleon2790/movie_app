@@ -13,6 +13,7 @@
   "author": "aaron de leon",
   "license": "ISC",
   "devDependencies": {
+    "@parcel/transformer-sass": "^2.7.0",
     "assert": "^2.0.0",
     "browserify-zlib": "^0.2.0",
     "buffer": "^6.0.3",

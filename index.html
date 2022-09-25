@@ -5,10 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie App</title>
-    <script defer type="module" src="src/js/controller.js"></script>
-
-    
+    <script defer type="module" src="src/js/controller.js"></script>   
   </head>
+
   <body>
     <div class="container">
       <header class="main-header">
@@ -66,25 +65,26 @@
         <!-- utility class split by flex -->
         <div class="split">
           <div class="featured">
-            <!-- <div class="overlay"></div> -->
             <div class="banner">
-              <!-- <img
-               src="./src/img/action.jpg"
-               class="banner-img"
-               alt=""
-               /> -->
+              <!-- trailer video goes here -->
             </div>
           </div>
-        <div class="feat-mov">
+          <div class="feat-mov">
+            <!-- movie overview goes here -->
+          </div> 
+          <div class="search-result hidden">
           </div>
         </div>
-      </div>
+  
+    
+      </main>
 
       <!-- movie list popular -->
       <section class="mov-list-popular">
         <div class="mov-popular-bar"> 
           <div class="radios">
             <div class="radio-container">
+              
               <label for="featured">Featured</label>
               <input type="radio" name="menu" id="featured" value="featured"/>
               
@@ -99,16 +99,20 @@
               <div class="radio-overlay"></div>
             
             </div>
+          </div>
         </div>
-        </div>
+
         <div class="mov-list-container">
+          <!-- list of movies goes here -->
         </div>
       </section>
-      </main>
+ 
       
     </div>
+  </div>
 
   </body>
+
 </html>
 
 <!-- <!DOCTYPE html>
