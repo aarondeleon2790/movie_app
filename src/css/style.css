@@ -277,9 +277,12 @@ img {
   position: relative;
   grid-column: 1/2;
   height: 150px;
+  padding: 0 1rem;
   display: flex;
   gap: 0.25rem;
   justify-content: center;
+  /* overflow-x: auto;
+  overflow-y: hidden; */
   overflow: hidden;
 }
 
@@ -307,22 +310,41 @@ img {
   /* border: 1px solid coral; */
 }
 
-.slider-button-right,
-.slider-button-left {
-  font-size: 2rem;
-  background: none;
-  color: white;
-  border: none;
+.left-slider,
+.right-slider {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: var(--box-shadow-accent);
+  background-color: #a371ccc9;
+  font-size: 25px;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.slider-button-left {
-  position: absolute;
+.left-slider:hover,
+.right-slider:hover {
+  cursor: pointer;
+  background-color: var(--color-accent);
+}
+
+.left-slider span,
+.right-slider span {
+  font-size: 32px;
+}
+.left-slider {
   left: 0;
+  top: 50%;
+  transform: translate(0, -50%);
 }
 
-.slider-button-right {
-  position: absolute;
+.right-slider {
   right: 0;
+  top: 50%;
+  transform: translate(0, -50%);
 }
 
 /* movie list popular */

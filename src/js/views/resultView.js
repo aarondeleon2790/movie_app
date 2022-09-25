@@ -5,7 +5,8 @@ class ResultView {
 
   render(data) {
     this.#data = data;
-    const markup = this.#generateMarkup();
+    const markup = `${this.#generateMarkup()}<btn class="left-slider"><</btn><btn class="right-slider">></btn>`;
+    console.log(markup);
     this.#containerEl.innerHTML = '';
     this.#containerEl.insertAdjacentHTML('afterbegin', markup);
     this.#containerEl.classList.remove('hidden');
