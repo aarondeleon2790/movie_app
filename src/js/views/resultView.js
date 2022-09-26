@@ -1,16 +1,15 @@
 import { IMGURL } from '../config';
 class ResultView {
-  #containerEl = document.querySelector('.search-result');
+  #containerEl = document.querySelector('.carousel-container');
   #data;
 
   render(data) {
     this.#data = data;
-    const markup = `${this.#generateMarkup()}<btn class="left-slider"><</btn><btn class="right-slider">></btn>`;
-    console.log(markup);
+    const markup = this.#generateMarkup();
     this.#containerEl.innerHTML = '';
     this.#containerEl.insertAdjacentHTML('afterbegin', markup);
     this.#containerEl.classList.remove('hidden');
-    this.#data = '';
+    document.querySelector('.hidden').classList.remove('hidden');
   }
 
   #generateMarkup() {
@@ -26,6 +25,26 @@ class ResultView {
         </div>`;
       })
       .join('');
+  }
+
+  sliderEventHandler() {
+    let scrollAmt = 0;
+    let scrollSpace = 200;
+    document.querySelector('.right-slider').addEventListener('click', () => {
+      this.#containerEl.scrollTo({
+        top: 0,
+        left: (scrollAmt += scrollSpace),
+      });
+      if (scrollAmt < 0) {
+        scrollAmt = 0;
+      }
+    });
+    document.querySelector('.left-slider').addEventListener('click', () => {
+      this.#containerEl.scrollTo({
+        top: 0,
+        left: (scrollAmt -= scrollSpace),
+      });
+    });
   }
 }
 

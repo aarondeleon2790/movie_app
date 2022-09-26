@@ -14,6 +14,9 @@ class TrailerView {
       return `
         <div class="no-data">
           <h3>Video not available</h3>
+        </div>
+        <div class="banner-content">
+          <h2 class="banner-title">${this.#data.title}</h2>
         </div>`;
     }
     return `

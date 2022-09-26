@@ -10,9 +10,9 @@ import ResultView from './views/resultView';
 const movList = document.querySelector('.mov-list-container');
 const movImg = document.querySelector('.mov-img');
 const banner = document.querySelector('.banner');
-// if (module.hot) {
-//   module.hot.accept();
-// }
+if (module.hot) {
+  module.hot.accept();
+}
 
 // async function getMovies() {
 //   window.location.hash = '';
@@ -136,6 +136,7 @@ async function loadSearch(query) {
   await popularMod.searchQuery(query);
   if (popularMod.state.search.length === 0) return;
   ResultView.render(popularMod.state.search);
+  ResultView.sliderEventHandler();
 }
 
 async function init() {
