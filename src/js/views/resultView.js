@@ -2,13 +2,17 @@ import { IMGURL } from '../config';
 class ResultView {
   #containerEl = document.querySelector('.carousel-container');
   #data;
+  #query;
 
-  render(data) {
+  render(data, query) {
     this.#data = data;
+    this.#query = query.pop();
+    const resultLabel = document.querySelector('.result-label');
     const markup = this.#generateMarkup();
     this.#containerEl.innerHTML = '';
+    if (resultLabel) resultLabel.remove();
+    this.#containerEl.insertAdjacentHTML('beforebegin', this.#labelMarkup());
     this.#containerEl.insertAdjacentHTML('afterbegin', markup);
-    this.#containerEl.classList.remove('hidden');
     document.querySelector('.hidden').classList.remove('hidden');
   }
 
@@ -25,6 +29,14 @@ class ResultView {
         </div>`;
       })
       .join('');
+  }
+
+  #labelMarkup() {
+    const queryUpper =
+      String(this.#query)[0].toUpperCase() + String(this.#query).slice(1);
+    return `
+    <div class="result-label"><p>Search Results for : ${queryUpper}</p></div>
+    `;
   }
 
   sliderEventHandler() {

@@ -135,7 +135,7 @@ async function loadSearch(query) {
   if (!query) return;
   await popularMod.searchQuery(query);
   if (popularMod.state.search.length === 0) return;
-  ResultView.render(popularMod.state.search);
+  ResultView.render(popularMod.state.search, popularMod.state.query);
   ResultView.sliderEventHandler();
 }
 
