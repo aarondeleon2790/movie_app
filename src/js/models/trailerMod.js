@@ -14,7 +14,9 @@ export async function getTrailer(hash) {
     // const movData = srcData.find(v => v.id === Number(id));
     // const { media } = movData;
     // prettier-ignore
-    const data = await getJSON(`${APIURL}movie/${id}?api_key=${APIKEY}&append_to_response=videos`)
+    const data = await getJSON(
+      `${APIURL}movie/${id}?api_key=${APIKEY}&append_to_response=videos`
+    );
     //prettier-ignore
     const { path, backdrop_path,name,overview,poster_path,title,videos: { results }} = data;
     if (results.length === 0) {
@@ -39,6 +41,7 @@ export async function getTrailer(hash) {
       img: poster_path,
     };
   } catch (err) {
-    alert(err);
+    console.log(err);
+    throw Error(err);
   }
 }

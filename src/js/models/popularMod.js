@@ -10,7 +10,7 @@ export const state = {
 export async function getPopular() {
   try {
     const data = await getJSON(
-      `${APIURL}movie/popular?api_key=${APIKEY}&language=en-US&page=1`
+      `${APIURL}movie/popular?api_key=${APIKEY}&language=en-USd&page=1`
       // `${APIURL}movie/popular?api_key=${APIKEY}&language=en-US&page=1`
     );
     const { results } = data;
@@ -26,7 +26,7 @@ export async function getPopular() {
       };
     });
   } catch (err) {
-    alert(err.message);
+    throw new Error(err);
   }
 }
 
@@ -49,5 +49,6 @@ export async function searchQuery(query) {
     });
   } catch (err) {
     console.log(err);
+    throw err;
   }
 }

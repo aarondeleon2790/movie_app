@@ -3,11 +3,24 @@ import { IMGURL } from '../config.js';
 class PopularView {
   #containerEl = document.querySelector('.mov-list-container');
   #data;
+  #errorMessage = 'Cannot display popular movies';
   render(data) {
     this.#data = data;
     const markup = this.#generateMarkup();
     this.#containerEl.innerHTML = '';
     this.#containerEl.insertAdjacentHTML('afterbegin', markup);
+  }
+
+  renderError(err) {
+    console.log(err);
+    const markup = this.#generateError(err);
+    this.#containerEl.innerHTML = '';
+    this.#containerEl.insertAdjacentHTML('afterbegin', markup);
+  }
+
+  #generateError(err) {
+    //prettier-ignore
+    return `<div class="errorMessage"><p>${err.message + ' ' +  this.#errorMessage}</p></div>`;
   }
 
   #generateMarkup() {

@@ -1,12 +1,24 @@
 class TrailerView {
   #containerEl = document.querySelector('.banner');
   #data;
+  #errorMessage = 'Cannot load trailer.';
 
   render(data) {
     this.#data = data;
     const markup = this.#generateMarkup();
     this.#containerEl.innerHTML = '';
     this.#containerEl.insertAdjacentHTML('afterbegin', markup);
+  }
+
+  renderError(err) {
+    const markup = this.#generateError(err);
+    this.#containerEl.innerHTML = '';
+    this.#containerEl.insertAdjacentHTML('afterbegin', markup);
+  }
+
+  #generateError(err) {
+    //prettier-ignore
+    return `<div class="errorMessage"><p>${this.#errorMessage }</p></div>`;
   }
 
   #generateMarkup() {

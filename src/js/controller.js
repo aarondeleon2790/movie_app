@@ -7,6 +7,8 @@ import TrailerView from './views/trailerView';
 import OverView from './views/overView';
 import SearchView from './views/searchView';
 import ResultView from './views/resultView';
+import popularView from './views/popularView.js';
+import trailerView from './views/trailerView';
 const movList = document.querySelector('.mov-list-container');
 const movImg = document.querySelector('.mov-img');
 const banner = document.querySelector('.banner');
@@ -111,15 +113,23 @@ radio.addEventListener('click', function (e) {
 // });
 
 async function loadPopular() {
-  await popularMod.getPopular();
-  PopularView.render(popularMod.state.popular);
+  try {
+    await popularMod.getPopular();
+    PopularView.render(popularMod.state.popular);
+  } catch (err) {
+    PopularView.renderError(err);
+  }
 }
 
 async function onLoadHashTrailer() {
-  const hash = window.location.hash.slice(1);
-  await trailerMod.getTrailer(hash);
-  TrailerView.render(trailerMod.state.trailer);
-  OverView.render(trailerMod.state.trailer);
+  try {
+    const hash = window.location.hash.slice(1);
+    await trailerMod.getTrailer(hash);
+    TrailerView.render(trailerMod.state.trailer);
+    OverView.render(trailerMod.state.trailer);
+  } catch (err) {
+    trailerView.renderError(err);
+  }
 }
 
 async function loadTrailer() {
@@ -138,6 +148,8 @@ async function loadSearch(query) {
   ResultView.render(popularMod.state.search, popularMod.state.query);
   ResultView.sliderEventHandler();
 }
+
+//initialize page
 
 async function init() {
   await loadPopular();
