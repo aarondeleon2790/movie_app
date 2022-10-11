@@ -9,6 +9,7 @@ import SearchView from './views/searchView';
 import ResultView from './views/resultView';
 import popularView from './views/popularView.js';
 import trailerView from './views/trailerView';
+import resultView from './views/resultView';
 const movList = document.querySelector('.mov-list-container');
 const movImg = document.querySelector('.mov-img');
 const banner = document.querySelector('.banner');
@@ -133,20 +134,29 @@ async function onLoadHashTrailer() {
 }
 
 async function loadTrailer() {
-  const id = window.location.hash.slice(1);
-  await trailerMod.getTrailer(id);
-  TrailerView.render(trailerMod.state.trailer);
-  OverView.render(trailerMod.state.trailer);
+  try {
+    const id = window.location.hash.slice(1);
+    await trailerMod.getTrailer(id);
+    TrailerView.render(trailerMod.state.trailer);
+    OverView.render(trailerMod.state.trailer);
 
-  window.scrollTo({ top: 0 });
+    window.scrollTo({ top: 0 });
+  } catch (err) {
+    trailerView.renderError(err);
+  }
 }
 
 async function loadSearch(query) {
-  if (!query) return;
-  await popularMod.searchQuery(query);
-  if (popularMod.state.search.length === 0) return;
-  ResultView.render(popularMod.state.search, popularMod.state.query);
-  ResultView.sliderEventHandler();
+  try {
+    console.log(query);
+    if (!query) return;
+    await popularMod.searchQuery(query);
+    ResultView.render(popularMod.state.search, popularMod.state.query);
+    ResultView.sliderEventHandler();
+  } catch (err) {
+    // console.log(err);
+    resultView.renderError(query);
+  }
 }
 
 //initialize page

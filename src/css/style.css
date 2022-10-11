@@ -61,6 +61,15 @@ img {
   text-align: center;
 }
 
+.hidden {
+  display: none;
+}
+
+.result-error {
+  font-size: 1.1rem;
+  padding: 0 3rem;
+}
+
 /* .overlay {
   position: absolute;
   inset: 0;
@@ -266,10 +275,6 @@ img {
   grid-column: 1/2;
   padding: 0 1rem;
   overflow: hidden;
-}
-
-.hidden {
-  display: none;
 }
 
 .result-label {

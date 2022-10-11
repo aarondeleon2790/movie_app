@@ -3,8 +3,12 @@ class ResultView {
   #containerEl = document.querySelector('.carousel-container');
   #data;
   #query;
+  #errorMessage = 'No results found for: ';
+  #errorContainer = document.querySelector('.search-result');
 
   render(data, query) {
+    let _ = document.querySelector('.result-error');
+    if (_) _.remove();
     this.#data = data;
     this.#query = query.pop();
     const resultLabel = document.querySelector('.result-label');
@@ -13,7 +17,23 @@ class ResultView {
     if (resultLabel) resultLabel.remove();
     this.#containerEl.insertAdjacentHTML('beforebegin', this.#labelMarkup());
     this.#containerEl.insertAdjacentHTML('afterbegin', markup);
+    if (!document.querySelector('.hidden')) return;
     document.querySelector('.hidden').classList.remove('hidden');
+  }
+
+  renderError(err) {
+    let _ = document.querySelector('.result-error');
+    if (_) _.remove();
+    const markup = this.#generateError(err);
+    this.#errorContainer.classList.add('hidden');
+    document.querySelector('.split').insertAdjacentHTML('afterend', markup); // const markup = this.#generateError(err);
+    // this.#errorContainer.innerHTML = '';
+    // this.#errorContainer.insertAdjacentHTML('beforebegin', markup);
+  }
+
+  #generateError(err) {
+    //prettier-ignore
+    return `<div class="result-error"><p>${this.#errorMessage + err }</p></div>`;
   }
 
   #generateMarkup() {
