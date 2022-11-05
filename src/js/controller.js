@@ -10,6 +10,7 @@ import ResultView from './views/resultView';
 import popularView from './views/popularView.js';
 import trailerView from './views/trailerView';
 import resultView from './views/resultView';
+import { timeOut } from './helper';
 const movList = document.querySelector('.mov-list-container');
 const movImg = document.querySelector('.mov-img');
 const banner = document.querySelector('.banner');
@@ -118,6 +119,7 @@ async function loadPopular() {
     await popularMod.getPopular();
     PopularView.render(popularMod.state.popular);
   } catch (err) {
+    console.log(err);
     PopularView.renderError(err);
   }
 }

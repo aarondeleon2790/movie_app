@@ -41,7 +41,6 @@ export async function getTrailer(hash) {
       img: poster_path,
     };
   } catch (err) {
-    console.log(err);
-    throw Error(err);
+    throw err;
   }
 }
