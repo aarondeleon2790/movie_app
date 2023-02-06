@@ -2,7 +2,6 @@ class TrailerView {
   #containerEl = document.querySelector('.banner');
   #data;
   #errorMessage = 'Cannot load trailer.';
-
   render(data) {
     this.#data = data;
     const markup = this.#generateMarkup();

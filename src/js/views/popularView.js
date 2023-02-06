@@ -11,6 +11,12 @@ class PopularView {
     this.#containerEl.insertAdjacentHTML('afterbegin', markup);
   }
 
+  renderSpinner() {
+    const markup = `<div><p>loading</p></div>`;
+    this.#containerEl.innerHTML = '';
+    this.#containerEl.insertAdjacentHTML('afterbegin', markup);
+  }
+
   renderError(err) {
     console.log(err);
     const markup = this.#generateError(err);

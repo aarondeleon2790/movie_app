@@ -115,6 +115,7 @@ radio.addEventListener('click', function (e) {
 
 async function loadPopular() {
   try {
+    PopularView.renderSpinner();
     await popularMod.getPopular();
     PopularView.render(popularMod.state.popular);
   } catch (err) {

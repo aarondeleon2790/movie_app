@@ -11,7 +11,10 @@
   --box-shadow-glow: 0px 0px 10px 0px rgb(224, 192, 151);
   --box-shadow-accent: 0px 0px 10px 0px #11001f;
 }
-
+.loader {
+  position: relative;
+  z-index: 999999;
+}
 * {
   padding: 0;
   margin: 0;
