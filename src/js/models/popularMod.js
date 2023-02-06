@@ -9,11 +9,11 @@ export const state = {
 
 export async function getPopular() {
   try {
-    const data = await getJSON(
-      `${APIURL}movie/popular?api_key=${APIKEY}&language=en-USd&page=1`
-      // `${APIURL}movie/popular?api_key=${APIKEY}&language=en-US&page=1`
-    );
-    const { results } = data;
+    //prettier-ignore
+    const data = await getJSON(`${APIURL}movie/popular?api_key=${APIKEY}&language=en-USd&page=1`);
+    // console.log(data);
+    const { results, total_pages: totalPages } = data;
+    // use total pages for pagination
     state.popular = results.map(mov => {
       return {
         id: mov.id,
@@ -26,7 +26,7 @@ export async function getPopular() {
       };
     });
   } catch (err) {
-    throw new Error(err);
+    throw err;
   }
 }
 

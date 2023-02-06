@@ -18,7 +18,6 @@ class PopularView {
   }
 
   renderError(err) {
-    console.log(err);
     const markup = this.#generateError(err);
     this.#containerEl.innerHTML = '';
     this.#containerEl.insertAdjacentHTML('afterbegin', markup);
@@ -26,7 +25,7 @@ class PopularView {
 
   #generateError(err) {
     //prettier-ignore
-    return `<div class="errorMessage"><p>${err.message + ' ' +  this.#errorMessage}</p></div>`;
+    return `<div class="errorMessage"><p>${this.#errorMessage}</p><p>${err}</p></div>`;
   }
 
   #generateMarkup() {
