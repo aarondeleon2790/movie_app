@@ -10,7 +10,9 @@ class ResultView {
     let _ = document.querySelector('.result-error');
     if (_) _.remove();
     this.#data = data;
+    //move logic code out of view
     this.#query = query.pop();
+    //
     const resultLabel = document.querySelector('.result-label');
     const markup = this.#generateMarkup();
     this.#containerEl.innerHTML = '';

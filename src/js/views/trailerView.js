@@ -4,6 +4,7 @@ class TrailerView {
   #errorMessage = 'Cannot load trailer.';
 
   render(data) {
+    console.log(data);
     this.#data = data;
     const markup = this.#generateMarkup();
     this.#containerEl.innerHTML = '';
