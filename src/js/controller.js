@@ -1,4 +1,5 @@
 import '../../node_modules/normalize.css';
+import '../../node_modules/swiper/swiper-bundle.min.css';
 import '../css/style.css';
 import * as popularMod from './models/popularMod.js';
 import * as trailerMod from './models/trailerMod.js';
@@ -7,13 +8,16 @@ import trailerView from './views/trailerView';
 import overView from './views/overView';
 import searchView from './views/searchView';
 import resultView from './views/resultView';
+import Swiper from '../../node_modules/swiper/swiper-bundle.min.js';
+import { RESULTOPTIONS } from './config';
+const swiper = new Swiper('.swiper', RESULTOPTIONS);
 
 const movList = document.querySelector('.mov-list-container');
 const movImg = document.querySelector('.mov-img');
 const banner = document.querySelector('.banner');
-if (module.hot) {
-  module.hot.accept();
-}
+// if (module.hot) {
+//   module.hot.accept();
+// }
 
 //radio buttons
 const radio = document.querySelector('.radio-container');
@@ -63,7 +67,7 @@ const loadSearch = async function (query) {
     if (!query) return;
     await popularMod.searchQuery(query);
     resultView.render(popularMod.state.search, popularMod.state.query);
-    resultView.sliderEventHandler();
+    // resultView.sliderEventHandler();
   } catch (err) {
     // console.log(err);
     resultView.renderError(query);

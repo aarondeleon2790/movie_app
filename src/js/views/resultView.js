@@ -1,6 +1,6 @@
 import { IMGURL } from '../config';
 class ResultView {
-  #containerEl = document.querySelector('.carousel-container');
+  #containerEl = document.querySelector('.swiper-wrapper');
   #data;
   #query;
   #errorMessage = 'No results found for: ';
@@ -17,7 +17,7 @@ class ResultView {
     const markup = this.#generateMarkup();
     this.#containerEl.innerHTML = '';
     if (resultLabel) resultLabel.remove();
-    this.#containerEl.insertAdjacentHTML('beforebegin', this.#labelMarkup());
+    this.#errorContainer.insertAdjacentHTML('afterbegin', this.#labelMarkup());
     this.#containerEl.insertAdjacentHTML('afterbegin', markup);
     if (!document.querySelector('.hidden')) return;
     document.querySelector('.hidden').classList.remove('hidden');
@@ -42,7 +42,7 @@ class ResultView {
     return this.#data
       .map(v => {
         return `
-        <div class="carousel-img">
+        <div class="swiper-slide">
           <a href="#${v.id}" class="result-link">
             <img class="result-img" src="${
               IMGURL + v.poster

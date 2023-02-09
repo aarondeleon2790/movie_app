@@ -35,9 +35,9 @@ export async function searchQuery(query) {
     state.query.push(query);
     //prettier-ignore
     const data = await getJSON(`${APIURL}search/movie?api_key=${APIKEY}&query=${query}`);
-
+    // console.log(data);
     const { results } = data;
-
+    console.log(data);
     state.search = results.map(mov => {
       return {
         id: mov.id,
