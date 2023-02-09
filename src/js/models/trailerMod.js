@@ -14,43 +14,35 @@ export async function getTrailer(hash) {
     //
 
     const id = hash || srcData[rand].id;
+
     // prettier-ignore
     const data = await getJSON(
       `${APIURL}movie/${id}?api_key=${APIKEY}&append_to_response=videos`
     );
-    //FIX CODE
-    // console.log(data);
 
-    //prettier-ignore
-    // const { videos: { results } } = data;
-    // path,
-    // backdrop_path,
-    // name,
-    // overview,
-    // poster_path,
-    // title,
-    console.log(data.videos.results);
-    if (data.results.length === 0) {
+    //code is fixed!!!!!
+    if (data.videos.results.length === 0) {
       state.trailer = {
-        title,
-        key: { key: false },
-        img: poster_path,
-        overview,
+        title: data.title,
+        key: false,
+        img: data.poster_path,
+        overview: data.overview,
       };
+      return;
     }
-
-    const official = results.find(result => {
-      return result.name === 'Official Trailer' && e.site === 'YouTube';
+    const official = data.videos.results.find(result => {
+      return result.name === 'Official Trailer' && result.site === 'YouTube';
     });
-    const key = !official ? results[0] : official;
+    const key = official || data.videos.results[0];
     state.trailer = {
       title: data.title,
-      key: data.key,
+      key: key,
       backdrop: data.backdrop_path,
       nameProp: data.name,
       overview: data.overview,
       img: data.poster_path,
     };
+    // console.log(state.trailer);
   } catch (err) {
     throw err;
   }
