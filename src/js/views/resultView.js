@@ -1,26 +1,26 @@
 import { IMGURL } from '../config';
 class ResultView {
-  #containerEl = document.querySelector('.swiper-wrapper');
+  // #containerEl = document.querySelector('.carousel-container');
+  #containerEl = document.querySelector('.glider  ');
   #data;
   #query;
-  #errorMessage = 'No results found for: ';
+  #errorMessage = 'No results found for : ';
   #errorContainer = document.querySelector('.search-result');
 
   render(data, query) {
     let _ = document.querySelector('.result-error');
     if (_) _.remove();
     this.#data = data;
-    //move logic code out of view
-    this.#query = query.pop();
-    //
-    const resultLabel = document.querySelector('.result-label');
+    this.#query = query;
+    // const resultLabel = document.querySelector('.result-label');
     const markup = this.#generateMarkup();
     this.#containerEl.innerHTML = '';
-    if (resultLabel) resultLabel.remove();
-    this.#errorContainer.insertAdjacentHTML('afterbegin', this.#labelMarkup());
+    // if (resultLabel) resultLabel.remove();
+    // this.#containerEl.insertAdjacentHTML('beforebegin', this.#labelMarkup());
     this.#containerEl.insertAdjacentHTML('afterbegin', markup);
-    if (!document.querySelector('.hidden')) return;
+    // if (!document.querySelector('.hidden')) return;
     document.querySelector('.hidden').classList.remove('hidden');
+    this.#containerEl.scrollIntoView(false);
   }
 
   renderError(err) {
@@ -28,9 +28,7 @@ class ResultView {
     if (_) _.remove();
     const markup = this.#generateError(err);
     this.#errorContainer.classList.add('hidden');
-    document.querySelector('.split').insertAdjacentHTML('afterend', markup); // const markup = this.#generateError(err);
-    // this.#errorContainer.innerHTML = '';
-    // this.#errorContainer.insertAdjacentHTML('beforebegin', markup);
+    document.querySelector('.split').insertAdjacentHTML('afterend', markup);
   }
 
   #generateError(err) {
@@ -45,7 +43,7 @@ class ResultView {
         <div class="swiper-slide">
           <a href="#${v.id}" class="result-link">
             <img class="result-img" src="${
-              IMGURL + v.poster
+              IMGURL + v.poster || v.backdrop
             }" alt="poster image of ${v.title}" "data-media="movie">
           <a/>
         </div>`;

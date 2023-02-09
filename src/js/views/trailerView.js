@@ -2,13 +2,12 @@ class TrailerView {
   #containerEl = document.querySelector('.banner');
   #data;
   #errorMessage = 'Cannot load trailer.';
-
   render(data) {
-    console.log(data);
     this.#data = data;
     const markup = this.#generateMarkup();
     this.#containerEl.innerHTML = '';
     this.#containerEl.insertAdjacentHTML('afterbegin', markup);
+    this.#containerEl.scrollIntoView();
   }
 
   renderError(err) {
@@ -23,7 +22,7 @@ class TrailerView {
   }
 
   #generateMarkup() {
-    if (!this.#data.key.key) {
+    if (!this.#data.key) {
       return `
         <div class="no-data">
           <h3>Video not available</h3>
