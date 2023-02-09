@@ -1,4 +1,3 @@
-import '../css/glider.css';
 import '../../node_modules/normalize.css';
 import '../../node_modules/swiper/swiper-bundle.min.css';
 import '../css/style.css';
@@ -10,7 +9,7 @@ import trailerView from './views/trailerView';
 import overView from './views/overView';
 import searchView from './views/searchView';
 import resultView from './views/resultView';
-import './glider.js';
+import Swiper, { Navigation } from 'swiper';
 
 const movList = document.querySelector('.mov-list-container');
 const movImg = document.querySelector('.mov-img');
@@ -40,17 +39,6 @@ const loadPopular = async function loadPopular() {
   }
 };
 
-// const onLoadHashTrailer = async function () {
-//   try {
-//     const hash = window.location.hash.slice(1);
-//     await trailerMod.getTrailer(hash);
-//     trailerView.render(trailerMod.state.trailer);
-//     overView.render(trailerMod.state.trailer);
-//   } catch (err) {
-//     trailerView.renderError(err);
-//   }
-// };
-
 const loadTrailer = async function () {
   try {
     const id = window.location.hash.slice(1);
@@ -79,17 +67,19 @@ async function init() {
   await loadPopular();
   loadTrailer();
   trailerView.eventHandler(loadTrailer);
-  // searchView.eventHandler(loadSearch);
+  searchView.eventHandler(loadSearch);
 }
 
-init();
-
-new Glider(document.querySelector('.glider'), {
-  slidesToScroll: 1,
-  slidesToShow: 'auto',
-  // exactWidth: true,
-  arrows: {
-    prev: '.glider-prev',
-    next: '.glider-next',
+const swiper = new Swiper('.swiper', {
+  // Install modules
+  modules: [Navigation],
+  slidesPerView: 'auto',
+  spaceBetween: 1,
+  slidesPerGroup: 3,
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
   },
 });
+
+init();

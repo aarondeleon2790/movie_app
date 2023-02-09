@@ -7,7 +7,8 @@ class TrailerView {
     const markup = this.#generateMarkup();
     this.#containerEl.innerHTML = '';
     this.#containerEl.insertAdjacentHTML('afterbegin', markup);
-    this.#containerEl.scrollIntoView();
+    //change to top of page
+    this.#containerEl.scrollIntoView(false);
   }
 
   renderError(err) {
