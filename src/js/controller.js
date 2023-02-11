@@ -9,7 +9,6 @@ import trailerView from './views/trailerView';
 import overView from './views/overView';
 import searchView from './views/searchView';
 import resultView from './views/resultView';
-import Swiper, { Navigation } from 'swiper';
 
 const movList = document.querySelector('.mov-list-container');
 const movImg = document.querySelector('.mov-img');
@@ -50,14 +49,14 @@ const loadTrailer = async function () {
   }
 };
 
-const loadSearch = async function (query) {
+const loadSearch = async function () {
   try {
+    const query = searchView.getQuery();
     if (!query) return;
+    //render spinner code goes here
     await searchMod.searchQuery(query);
     resultView.render(searchMod.state.searchResults, query);
-    // resultView.sliderEventHandler();
   } catch (err) {
-    // console.log(err);
     resultView.renderError(err.message);
   }
 };
@@ -69,17 +68,5 @@ async function init() {
   trailerView.eventHandler(loadTrailer);
   searchView.eventHandler(loadSearch);
 }
-
-const swiper = new Swiper('.swiper', {
-  // Install modules
-  modules: [Navigation],
-  slidesPerView: 'auto',
-  spaceBetween: 1,
-  slidesPerGroup: 3,
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-});
 
 init();

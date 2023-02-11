@@ -1,14 +1,22 @@
 class SearchView {
-  #containerEl;
-  #eventEl = document.querySelector('.search-form');
+  #containerEl = document.querySelector('.search-form');
   #searchEl = document.querySelector('.search-bar-input');
   #data;
 
+  getQuery() {
+    const query = this.#containerEl.querySelector('.search-bar-input').value;
+    this.#clearInput();
+    return query;
+  }
+
+  #clearInput() {
+    this.#containerEl.querySelector('.search-bar-input').value = '';
+  }
+
   eventHandler(callback) {
-    this.#eventEl.addEventListener('submit', e => {
+    this.#containerEl.addEventListener('submit', e => {
       e.preventDefault();
-      const query = this.#searchEl.value;
-      callback(query);
+      callback();
       this.#searchEl.value = '';
     });
   }

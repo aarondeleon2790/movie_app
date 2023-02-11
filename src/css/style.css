@@ -70,7 +70,13 @@ img {
 
 .result-error {
   font-size: 1.1rem;
-  padding: 0 3rem;
+  padding: 1rem 3rem;
+}
+
+.result-error p {
+  box-shadow: var(--box-shadow-glow);
+  padding: 1em;
+  border-radius: 10px;
 }
 
 /* .overlay {
@@ -269,9 +275,15 @@ img {
 /* Search Results */
 
 .result-label {
-  margin-bottom: 0.5rem;
+  margin: 0.5rem;
   font-size: 1.1rem;
   letter-spacing: 0.75;
+}
+
+.result-label p {
+  box-shadow: var(--box-shadow-glow);
+  padding: 0.3em 1em;
+  border-radius: 10px;
 }
 
 .search-result {
