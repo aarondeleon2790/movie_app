@@ -1,40 +1,35 @@
 import { IMGURL } from '../config.js';
+import View from './view';
 
-class PopularView {
-  #containerEl = document.querySelector('.mov-list-container');
-  #data;
+class PopularView extends View {
+  containerEl = document.querySelector('.mov-list-container');
+  // #data;
   #errorMessage = 'Cannot display popular movies';
-  render(data) {
-    this.#data = data;
-    const markup = this.#generateMarkup();
-    this.#clearContainer();
-    this.#containerEl.insertAdjacentHTML('afterbegin', markup);
-  }
 
-  //fix spinner /needs animation for spinner
-  renderSpinner() {
-    const markup = `<div><p>loading</p></div>`;
-    this.#clearContainer();
-    this.#containerEl.insertAdjacentHTML('afterbegin', markup);
-  }
+  // render(data) {
+  //   this.#data = data;
+  //   const markup = this.#generateMarkup();
+  //   this.#clearContainer();
+  //   this.#containerEl.insertAdjacentHTML('afterbegin', markup);
+  // }
 
-  renderError(err) {
-    const markup = this.#generateError(err);
-    this.#clearContainer();
-    this.#containerEl.insertAdjacentHTML('afterbegin', markup);
-  }
+  // renderError(err) {
+  //   const markup = this.#generateError(err);
+  //   this.#clearContainer();
+  //   this.#containerEl.insertAdjacentHTML('afterbegin', markup);
+  // }
 
-  #clearContainer() {
-    this.#containerEl.innerHTML = '';
-  }
+  // #clearContainer() {
+  //   this.#containerEl.innerHTML = '';
+  // }
 
-  #generateError(err) {
+  generateError(err) {
     //prettier-ignore
     return `<div class="errorMessage"><p>${this.#errorMessage}</p><p>${err}</p></div>`;
   }
 
-  #generateMarkup() {
-    return this.#data
+  generateMarkup() {
+    return this.data
       .map(mov => {
         const title = mov.title ?? mov.name;
         //prettier-ignore

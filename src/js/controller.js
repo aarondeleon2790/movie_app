@@ -33,7 +33,6 @@ const loadPopular = async function loadPopular() {
     await popularMod.getPopular();
     popularView.render(popularMod.state.popular);
   } catch (err) {
-    // console.log(err);
     popularView.renderError(err);
   }
 };
