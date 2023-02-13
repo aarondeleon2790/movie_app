@@ -8,7 +8,7 @@ export const state = {
 export async function getPopular() {
   try {
     //prettier-ignore
-    const data = await getJSON(`${APIURL}movie/popular?api_key=${APIKEY}&language=en-USd&page=1`);
+    const data = await getJSON(`${APIURL}movie/popular?api_key=${APIKEY}&language=en-USd&page=4`);
     // console.log(data);
     const { results, total_pages: totalPages } = data;
     // use total pages for pagination
