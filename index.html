@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie App</title>
     <!-- <script defer src="src/js/views/glider.js"></script> -->
-    <script defer type="module" src="src/js/controller.js"></script>   
+    <script defer type="module" src="src/js/controller.js"></script>
   </head>
 
   <body>
@@ -21,8 +21,8 @@
           </button> -->
           <div class="logo">
             <a href="#" class="navbar-logo">
-              <img src="src/img/icons/video.svg" alt="logo">
-               <!-- <img src="src/img/icons/video.svg" class="play"alt=""> -->
+              <img src="src/img/icons/video.svg" alt="logo" />
+              <!-- <img src="src/img/icons/video.svg" class="play"alt=""> -->
             </a>
           </div>
 
@@ -44,24 +44,27 @@
                 class="search-bar-input"
               />
               <button type="submit" class="search-button">
-                <img src="src/img/icons/search-outline.svg" alt="search icon" class="search-icon">
+                <img
+                  src="src/img/icons/search-outline.svg"
+                  alt="search icon"
+                  class="search-icon"
+                />
               </button>
             </form>
 
-              <!-- <button class="navbar-form-close">
+            <!-- <button class="navbar-form-close">
                 <ion-icon name="close-circle-outline"></ion-icon>
               </button>
             </form> -->
 
             <!--
             - search button for small screen
-          -->
-          </div>
+          --></div>
         </div>
       </header>
 
       <!-- main content  -->
- 
+
       <main>
         <!-- utility class split by flex -->
         <div class="split">
@@ -73,66 +76,29 @@
           <div class="feat-mov">
             <!-- movie overview goes here -->
           </div>
+
           <div class="search-result">
-       
-            <!-- <div class="carousel-container"> -->
-              <!-- search results goes here -->
-            <!-- </div>
-            <btn class="left-slider"><</btn>
-            <btn class="right-slider">></btn> -->
-            <div class="glider-contain">
-              <div class="glider">
-                <div>
-                  <a href="#"">
-                    <img src="https://images.tmdb.org/t/p/w1280/sv1xJUazXeYqALzczSZ3O6nkH75.jpg">
-                  <a/>
-                </div>
-                <div>
-                  <a href="#"">
-                    <img src="https://images.tmdb.org/t/p/w1280/sv1xJUazXeYqALzczSZ3O6nkH75.jpg">
-                  <a/>
-                </div>
-                <div>
-                  <a href="#"">
-                    <img src="https://images.tmdb.org/t/p/w1280/sv1xJUazXeYqALzczSZ3O6nkH75.jpg">
-                  <a/>
-                </div>
-                <div>
-                  <a href="#"">
-                    <img src="https://images.tmdb.org/t/p/w1280/sv1xJUazXeYqALzczSZ3O6nkH75.jpg">
-                  <a/>
-                </div>
-              </div>
-            
-              <button aria-label="Previous" class="glider-prev">«</button>
-              <button aria-label="Next" class="glider-next">»</button>
-            </div>
-
-          </div> 
-
-          
-    
+            <!-- search label goes here -->
+            <!-- search results goes here -->
+          </div>
+        </div>
       </main>
 
       <!-- movie list popular -->
       <section class="mov-list-popular">
-        <div class="mov-popular-bar"> 
+        <div class="mov-popular-bar">
           <div class="radios">
             <div class="radio-container">
-              
               <label for="featured">Featured</label>
-              <input type="radio" name="menu" id="featured" value="featured"/>
-              
-              
+              <input type="radio" name="menu" id="featured" value="featured" />
+
               <label for="popular">Popular</label>
               <input type="radio" name="menu" id="popular" value="popular" />
-              
+
               <label for="new">New</label>
-              <input type="radio" name="menu" id="new" value="new"/>
-              
+              <input type="radio" name="menu" id="new" value="new" />
 
               <div class="radio-overlay"></div>
-            
             </div>
           </div>
         </div>
@@ -141,111 +107,6 @@
           <!-- list of movies goes here -->
         </div>
       </section>
-
-
- 
-      
     </div>
-  </div>
-
   </body>
-
 </html>
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Movie App | Guide</title>
-
-    <script defer type="module" src="./src/js/main.js"></script>
-  </head>
-  <body>
-    <div class="container grid">
-      <header class="main-header">
-        <div class="logo">
-          <a href="#">Movie App</a>
-        </div>
-        <div class="search-bar">
-          <label for="search" class="search-label">Go</label>
-          <input
-            type="search"
-            name="search"
-            id=""
-            placeholder="search a movie"
-            class="search-input"
-          />
-        </div>
-      </header>
-      <nav class="nav-bar">
-        <ul class="nav-list">
-          <li class="nav-item"><a href="#" class="nav-links">icon1</a></li>
-          <li class="nav-item"><a href="#" class="nav-links">icon2</a></li>
-          <li class="nav-item"><a href="#" class="nav-links">icon3</a></li>
-          <li class="nav-item"><a href="#" class="nav-links">icon4</a></li>
-        </ul>
-      </nav>
-      <div class="feature-selection">
-        <ul class="category-list">
-          <li class="category-item">
-            <a href="" class="category-links">Popular</a>
-          </li>
-          <li class="category-item">
-            <a href="" class="category-links">Movies</a>
-          </li>
-          <li class="category-item">
-            <a href="" class="category-links">Tv Shows</a>
-          </li>
-          <li class="category-item">
-            <a href="" class="category-links">Horror</a>
-          </li>
-          <li class="category-item">
-            <a href="" class="category-links">Comedy</a>
-          </li>
-        </ul>
-      </div>
-      <main class="main-feature">
-        <div class="featured-movie">
-          <img
-            src="https://images.tmdb.org/t/p/w1280/uQBbjrLVsUibWxNDGA4Czzo8lwz.jpg"
-            alt="movie title trailer"
-          />
-          <div class="this"></div>
-        </div>
-      </main>
-      <aside class="side-feature">
-        <div class="featured-description">
-          <div class="side-img">
-            <img
-              src="https://images.tmdb.org/t/p/w1280/uQBbjrLVsUibWxNDGA4Czzo8lwz.jpg"
-              alt="movie title trailer"
-            />
-          </div>
-          <div class="side-text">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit,
-              quas voluptatum pariatur dignissimos voluptates aperiam aspernatur
-              similique necessitatibus soluta dolor Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Repellendus, maxime..
-            </p>
-          </div>
-        </div>
-      </aside>
-      <section class="movie-list">
-        <div class="movies">
-          <p>lorem10</p>
-        </div>
-      </section>
-    </div>
-  </body>
-</html> -->
-
-<!-- 
-
-side-nav    header           header
-side-nav    main-content     side content
-side-nav    movie-list       movie list
-
- -->

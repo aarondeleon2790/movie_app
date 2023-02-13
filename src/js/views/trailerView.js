@@ -5,15 +5,19 @@ class TrailerView {
   render(data) {
     this.#data = data;
     const markup = this.#generateMarkup();
-    this.#containerEl.innerHTML = '';
+    this.#clearContainer();
     this.#containerEl.insertAdjacentHTML('afterbegin', markup);
-    this.#containerEl.scrollIntoView();
+    this.#containerEl.scrollIntoView(false);
   }
 
   renderError(err) {
     const markup = this.#generateError(err);
-    this.#containerEl.innerHTML = '';
+    this.#clearContainer();
     this.#containerEl.insertAdjacentHTML('afterbegin', markup);
+  }
+
+  #clearContainer() {
+    this.#containerEl.innerHTML = '';
   }
 
   #generateError(err) {
@@ -41,18 +45,8 @@ class TrailerView {
      }" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
     `;
-    //   <div class="banner-content">
-    //   <h2 class="banner-title">${this.#data.title}</h2>
-    //  </div>
   }
 
-  // eventHandler(callback) {
-  //   this.#eventContainer.addEventListener('click', e => {
-  //     const id = e.target.getAttribute('id');
-  //     const media = e.target.getAttribute('data-media');
-  //     callback(id, media);
-  //   });
-  // }
   eventHandler(callback) {
     window.addEventListener('hashchange', callback);
   }

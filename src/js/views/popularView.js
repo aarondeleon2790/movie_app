@@ -7,20 +7,25 @@ class PopularView {
   render(data) {
     this.#data = data;
     const markup = this.#generateMarkup();
-    this.#containerEl.innerHTML = '';
+    this.#clearContainer();
     this.#containerEl.insertAdjacentHTML('afterbegin', markup);
   }
 
+  //fix spinner /needs animation for spinner
   renderSpinner() {
     const markup = `<div><p>loading</p></div>`;
-    this.#containerEl.innerHTML = '';
+    this.#clearContainer();
     this.#containerEl.insertAdjacentHTML('afterbegin', markup);
   }
 
   renderError(err) {
     const markup = this.#generateError(err);
-    this.#containerEl.innerHTML = '';
+    this.#clearContainer();
     this.#containerEl.insertAdjacentHTML('afterbegin', markup);
+  }
+
+  #clearContainer() {
+    this.#containerEl.innerHTML = '';
   }
 
   #generateError(err) {

@@ -7,8 +7,12 @@ class OverView {
   render(data) {
     this.#data = data;
     const markup = this.#generateMarkup();
-    this.#containerEl.innerHTML = '';
+    this.#clearContainer();
     this.#containerEl.insertAdjacentHTML('afterbegin', markup);
+  }
+
+  #clearContainer() {
+    this.#containerEl.innerHTML = '';
   }
   #generateMarkup() {
     const title = this.#data.title || this.#data.name || this.#titleDefault;

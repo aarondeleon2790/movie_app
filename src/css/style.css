@@ -70,7 +70,13 @@ img {
 
 .result-error {
   font-size: 1.1rem;
-  padding: 0 3rem;
+  padding: 1rem 3rem;
+}
+
+.result-error p {
+  box-shadow: var(--box-shadow-glow);
+  padding: 1em;
+  border-radius: 10px;
 }
 
 /* .overlay {
@@ -213,6 +219,7 @@ img {
   border-radius: 20px;
   box-shadow: 15px 12px 50px rgba(0, 0, 0, 0.3);
   height: 100%;
+  background: var(--bg-secondary);
 }
 
 .banner-content {
@@ -265,109 +272,50 @@ img {
   color: rgb(131, 129, 131);
 }
 
-/* .search-split {
-  display: flex;
-  justify-content: center;
-  gap: 0.125rem;
-  flex-wrap: wrap;
-} */
+/* Search Results */
+
+.result-label {
+  margin: 0.5rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.75;
+}
+
+.result-label p {
+  box-shadow: var(--box-shadow-glow);
+  padding: 0.3em 1em;
+  border-radius: 10px;
+}
 
 .search-result {
   /* position: relative; */
   grid-column: 1/2;
   padding: 0 1rem;
   overflow: hidden;
-  /* border: 1px solid red; */
-  height: 300px;
 }
 
-.glider img {
-  width: 100%;
+.swiper-slide {
+  max-width: 150px;
+  transition: 250ms all;
+}
+
+.swiper-slide:hover {
+  transform: scale(1.1);
+  transform-origin: center;
+  z-index: 1;
+}
+
+.swiper-slide img {
+  display: block;
+  max-width: 100%;
   height: auto;
   object-fit: cover;
 }
 
-.glider-slide {
-  /* border: 1px solid green; */
-}
-
-.glider div {
-  height: 100px;
-}
-
-.result-label {
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
-  letter-spacing: 0.75;
-}
-
-.carousel-container {
-  display: flex;
-  border-radius: 10px;
-  background-color: black;
-  overflow: hidden;
-
-  /* flex-wrap: nowrap; */
-  /* overflow-x: auto;
-  overflow-y: hidden; */
-}
-
-/* carousel for search result */
-.carousel-img {
-  height: 100%;
-  /* border: 1px solid red; */
-}
-
-.carousel-img {
-  width: 120px;
-  /* flex-shrink: 0; */
-}
-
-/* .carousel-container img {
-  width: 100%;
-  height: 100%;
-} */
-
-.carousel-img img:hover {
-  transform: scale(1.1);
-  object-position: bottom;
-}
-
-.left-slider,
-.right-slider {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  box-shadow: var(--box-shadow-accent);
-  background-color: #a371cca2;
-  font-size: 25px;
-  z-index: 10;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.left-slider:hover,
-.right-slider:hover {
-  cursor: pointer;
-  background-color: var(--color-accent);
-}
-
-.left-slider span,
-.right-slider span {
-  font-size: 32px;
-}
-.left-slider {
-  left: 0;
-  top: 50%;
-  transform: translate(0, -50%);
-}
-
-.right-slider {
-  right: 0;
-  top: 50%;
-  transform: translate(0, -50%);
+.swiper-button-next,
+.swiper-button-prev {
+  --swiper-navigation-color: white;
+  --swiper-navigation-top-offset: 60%;
+  font-weight: bold;
 }
 
 /* movie list popular */
