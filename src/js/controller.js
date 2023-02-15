@@ -27,11 +27,11 @@ radio.addEventListener('click', function (e) {
 });
 
 //onload of page
-const loadPopular = async function loadPopular() {
+const loadPopular = async function loadPopular(page) {
   try {
     popularView.renderSpinner();
-    await popularMod.getPopular();
-    popularView.render(popularMod.state.popular);
+    await popularMod.getPopular(page);
+    popularView.render(popularMod.state.currentPage);
   } catch (err) {
     // console.log(err);
     popularView.renderError(err);
@@ -70,3 +70,7 @@ async function init() {
 }
 
 init();
+const paginate = document.querySelector('.paginate');
+paginate.addEventListener('click', async function () {
+  await loadPopular(2);
+});
