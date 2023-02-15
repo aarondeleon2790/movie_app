@@ -30,7 +30,7 @@ radio.addEventListener('click', function (e) {
 const loadPopular = async function loadPopular() {
   try {
     popularView.renderSpinner();
-    await popularMod.getPopular();
+    await popularMod.addPopular();
     popularView.render(popularMod.state.popular);
   } catch (err) {
     popularView.renderError(err);
@@ -69,3 +69,13 @@ async function init() {
 }
 
 init();
+
+const pageList = document.querySelector('.page-lists');
+
+pageList.addEventListener('click', async function (e) {
+  const page = e.target.closest('.page-list-btn');
+  if (!page) return;
+  const pageQuery = +page.innerHTML;
+  await popularMod.getPageResult(pageQuery);
+  popularView.render(popularMod.state.currentPageGroup);
+});

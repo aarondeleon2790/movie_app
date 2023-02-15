@@ -46,6 +46,10 @@ img {
   display: block;
 }
 
+button {
+  cursor: pointer;
+}
+
 .split {
   /* display: flex;
   gap: 1em;
