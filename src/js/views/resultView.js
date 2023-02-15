@@ -1,32 +1,23 @@
 import { IMGURL } from '../config';
 import Swiper, { Navigation } from 'swiper';
-class ResultView {
-  // #containerEl = document.querySelector('.carousel-container');
-  #containerEl = document.querySelector('.search-result');
+import View from './view';
+class ResultView extends View {
+  containerEl = document.querySelector('.search-result');
   #data;
   #query;
   #errorMessage = 'No results found for : ';
 
+  //redefine render function for this view
   render(data, query) {
     this.#data = data;
     this.#query = query;
     const markup = this.#generateMarkup();
     const labelMarkup = this.#labelMarkup();
-    this.#clearContainer();
-    this.#containerEl.insertAdjacentHTML('afterbegin', markup);
-    this.#containerEl.insertAdjacentHTML('afterbegin', labelMarkup);
+    this.clearContainer();
+    this.containerEl.insertAdjacentHTML('afterbegin', markup);
+    this.containerEl.insertAdjacentHTML('afterbegin', labelMarkup);
     this.#initializeSwiper();
-    this.#containerEl.scrollIntoView(false);
-  }
-
-  renderError(err) {
-    const markup = this.#generateError(err);
-    this.#clearContainer();
-    this.#containerEl.insertAdjacentHTML('afterbegin', markup);
-  }
-
-  #clearContainer() {
-    this.#containerEl.innerHTML = '';
+    this.containerEl.scrollIntoView(false);
   }
 
   #generateError(err) {

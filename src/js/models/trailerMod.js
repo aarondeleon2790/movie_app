@@ -20,6 +20,8 @@ export async function getTrailer(hash) {
       `${APIURL}movie/${id}?api_key=${APIKEY}&append_to_response=videos`
     );
 
+    // console.log(data);
+
     //code is fixed!!!!!
     if (data.videos.results.length === 0) {
       state.trailer = {
