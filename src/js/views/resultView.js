@@ -17,7 +17,14 @@ class ResultView extends View {
     this.containerEl.insertAdjacentHTML('afterbegin', markup);
     this.containerEl.insertAdjacentHTML('afterbegin', labelMarkup);
     this.#initializeSwiper();
-    this.containerEl.scrollIntoView(false);
+    this.containerEl.scrollIntoView();
+  }
+
+  renderError(err) {
+    this.clearContainer();
+    const markup = this.#generateError(err);
+    this.containerEl.insertAdjacentHTML('afterbegin', markup);
+    this.containerEl.scrollIntoView({ block: 'center' });
   }
 
   #generateError(err) {

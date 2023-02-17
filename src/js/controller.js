@@ -13,9 +13,9 @@ import resultView from './views/resultView';
 const movList = document.querySelector('.mov-list-container');
 const movImg = document.querySelector('.mov-img');
 const banner = document.querySelector('.banner');
-// if (module.hot) {
-//   module.hot.accept();
-// }
+if (module.hot) {
+  module.hot.accept();
+}
 
 //radio buttons
 const radio = document.querySelector('.radio-container');
@@ -31,7 +31,7 @@ const loadPopular = async function loadPopular(page) {
   try {
     popularView.renderSpinner();
     await popularMod.addPopular();
-    popularView.render(popularMod.state.popular);
+    popularView.render(popularMod.state.currentGroup);
   } catch (err) {
     popularView.renderError(err);
   }
@@ -63,7 +63,7 @@ const loadSearch = async function () {
 //initialize page
 async function init() {
   await loadPopular();
-  loadTrailer();
+  await loadTrailer();
   trailerView.eventHandler(loadTrailer);
   searchView.eventHandler(loadSearch);
 }
@@ -72,10 +72,41 @@ init();
 
 const pageList = document.querySelector('.page-lists');
 
-pageList.addEventListener('click', async function (e) {
-  const page = e.target.closest('.page-list-btn');
-  if (!page) return;
-  const pageQuery = +page.innerHTML;
-  await popularMod.getPageResult(pageQuery);
-  popularView.render(popularMod.state.currentPageGroup);
+const generatePagination = function (totalPage, maxDisplayed, currentPage) {
+  const half = Math.floor(maxDisplayed / 2);
+
+  let start = currentPage - half;
+  if (currentPage + half >= totalPage) {
+    start = totalPage - maxDisplayed;
+  }
+  if (start < 0) {
+    start = 0;
+  }
+
+  return Array.from({ length: maxDisplayed }, (_, index) => index + 1 + start);
+};
+
+const something = generatePagination(100, 20, 97)
+  .map(page => {
+    return `<li class="page-list"><button class="page-list-btn">${page}</button></li>`;
+  })
+  .join('');
+
+pageList.insertAdjacentHTML('afterbegin', something);
+
+pageList.addEventListener('click', function (e) {
+  const btn = e.target.closest('.page-list-btn');
+  if (!btn) return;
+  const btnValue = btn.innerHTML;
+  console.log(btnValue);
 });
+
+// pageList.addEventListener('click', async function (e) {
+//   const page = e.target.closest('.page-list-btn');
+//   if (!page) return;
+//   const pageQuery = +page.innerHTML;
+//   await popularMod.getPageResult(pageQuery);
+//   popularView.render(popularMod.state.currentGroup);
+//   window.location.hash = '';
+//   loadTrailer();
+// });

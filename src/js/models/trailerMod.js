@@ -9,12 +9,11 @@ export const state = {
 export async function getTrailer(hash) {
   try {
     //generating random hash/id onpage load
-    const srcData = popularMod.state.popular;
+    const srcData = popularMod.state.currentGroup;
     const rand = Math.trunc(Math.random() * srcData.length);
     //
 
     const id = hash || srcData[rand].id;
-
     // prettier-ignore
     const data = await getJSON(
       `${APIURL}movie/${id}?api_key=${APIKEY}&append_to_response=videos`
