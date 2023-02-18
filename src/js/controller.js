@@ -1,6 +1,7 @@
 import '../../node_modules/normalize.css';
 import '../../node_modules/swiper/swiper-bundle.min.css';
 import '../css/style.css';
+import { MAXPAGINATIONDISPLAY } from './config';
 import * as popularMod from './models/popularMod.js';
 import * as trailerMod from './models/trailerMod.js';
 import * as searchMod from './models/searchMod.js';
@@ -9,13 +10,11 @@ import trailerView from './views/trailerView';
 import overView from './views/overView';
 import searchView from './views/searchView';
 import resultView from './views/resultView';
+import paginationView from './views/paginationView';
 
 const movList = document.querySelector('.mov-list-container');
 const movImg = document.querySelector('.mov-img');
 const banner = document.querySelector('.banner');
-if (module.hot) {
-  module.hot.accept();
-}
 
 //radio buttons
 const radio = document.querySelector('.radio-container');
@@ -27,10 +26,10 @@ radio.addEventListener('click', function (e) {
 });
 
 //onload of page
-const loadPopular = async function loadPopular(page) {
+const loadPopular = async function loadPopular() {
   try {
     popularView.renderSpinner();
-    await popularMod.addPopular();
+    await popularMod.loadPopular();
     popularView.render(popularMod.state.currentGroup);
   } catch (err) {
     popularView.renderError(err);
@@ -39,8 +38,7 @@ const loadPopular = async function loadPopular(page) {
 
 const loadTrailer = async function () {
   try {
-    const id = window.location.hash.slice(1);
-    await trailerMod.getTrailer(id);
+    await trailerMod.getTrailer();
     trailerView.render(trailerMod.state.trailer);
     overView.render(trailerMod.state.trailer);
   } catch (err) {
@@ -60,21 +58,18 @@ const loadSearch = async function () {
   }
 };
 
-//initialize page
-async function init() {
-  await loadPopular();
-  await loadTrailer();
-  trailerView.eventHandler(loadTrailer);
-  searchView.eventHandler(loadSearch);
-}
-
-init();
-
-const pageList = document.querySelector('.page-lists');
+const loadPagination = function (currentPage = 1) {
+  // popularMod.state.totalPages;
+  const pageData = generatePagination(
+    popularMod.state.totalPages,
+    MAXPAGINATIONDISPLAY,
+    currentPage
+  );
+  paginationView.render(pageData);
+};
 
 const generatePagination = function (totalPage, maxDisplayed, currentPage) {
   const half = Math.floor(maxDisplayed / 2);
-
   let start = currentPage - half;
   if (currentPage + half >= totalPage) {
     start = totalPage - maxDisplayed;
@@ -82,31 +77,24 @@ const generatePagination = function (totalPage, maxDisplayed, currentPage) {
   if (start < 0) {
     start = 0;
   }
-
   return Array.from({ length: maxDisplayed }, (_, index) => index + 1 + start);
 };
 
-const something = generatePagination(100, 20, 97)
-  .map(page => {
-    return `<li class="page-list"><button class="page-list-btn">${page}</button></li>`;
-  })
-  .join('');
+const loadPage = async function (page) {
+  popularView.renderSpinner();
+  await popularMod.getPageResult(page);
+  popularView.render(popularMod.state.currentGroup);
+  await loadTrailer();
+};
 
-pageList.insertAdjacentHTML('afterbegin', something);
+//initialize page
+async function init() {
+  await loadPopular();
+  loadPagination();
+  await loadTrailer();
+  trailerView.eventHandler(loadTrailer);
+  searchView.eventHandler(loadSearch);
+  paginationView.eventHandler(loadPage);
+}
 
-pageList.addEventListener('click', function (e) {
-  const btn = e.target.closest('.page-list-btn');
-  if (!btn) return;
-  const btnValue = btn.innerHTML;
-  console.log(btnValue);
-});
-
-// pageList.addEventListener('click', async function (e) {
-//   const page = e.target.closest('.page-list-btn');
-//   if (!page) return;
-//   const pageQuery = +page.innerHTML;
-//   await popularMod.getPageResult(pageQuery);
-//   popularView.render(popularMod.state.currentGroup);
-//   window.location.hash = '';
-//   loadTrailer();
-// });
+init();

@@ -6,8 +6,9 @@ export const state = {
   trailer: {},
 };
 
-export async function getTrailer(hash) {
+export async function getTrailer() {
   try {
+    const hash = window.location.hash.slice(1);
     //generating random hash/id onpage load
     const srcData = popularMod.state.currentGroup;
     const rand = Math.trunc(Math.random() * srcData.length);
@@ -19,9 +20,6 @@ export async function getTrailer(hash) {
       `${APIURL}movie/${id}?api_key=${APIKEY}&append_to_response=videos`
     );
 
-    // console.log(data);
-
-    //code is fixed!!!!!
     if (data.videos.results.length === 0) {
       state.trailer = {
         title: data.title,
@@ -43,7 +41,6 @@ export async function getTrailer(hash) {
       overview: data.overview,
       img: data.poster_path,
     };
-    // console.log(state.trailer);
   } catch (err) {
     throw err;
   }
