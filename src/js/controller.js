@@ -60,21 +60,22 @@ const loadSearch = async function () {
 
 const loadPagination = function (currentPage = 1) {
   // popularMod.state.totalPages;
+  const page = Number(currentPage);
   const pageData = generatePagination(
     popularMod.state.totalPages,
     MAXPAGINATIONDISPLAY,
-    currentPage
+    page
   );
-  paginationView.render(pageData);
+  paginationView.render(pageData, page);
 };
 
 const generatePagination = function (totalPage, maxDisplayed, currentPage) {
-  const half = Math.floor(maxDisplayed / 2);
+  const half = Math.ceil(maxDisplayed / 2);
   let start = currentPage - half;
   if (currentPage + half >= totalPage) {
     start = totalPage - maxDisplayed;
   }
-  if (start < 0) {
+  if (start <= 0) {
     start = 0;
   }
   return Array.from({ length: maxDisplayed }, (_, index) => index + 1 + start);
@@ -84,7 +85,7 @@ const loadPage = async function (page) {
   popularView.renderSpinner();
   await popularMod.getPageResult(page);
   popularView.render(popularMod.state.currentGroup);
-  await loadTrailer();
+  loadPagination(page);
 };
 
 //initialize page

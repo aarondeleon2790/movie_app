@@ -1,24 +1,31 @@
-class PaginationView {
-  containerEl = document.querySelector('.page-lists');
+import View from './view';
 
-  render(data) {
+class PaginationView extends View {
+  containerEl = document.querySelector('.page-lists');
+  currentPage;
+
+  render(data, currentPage) {
     this.data = data;
-    const markup = this.generateMarkup();
-    console.log(markup);
+    this.currentPage = currentPage;
+    const markup = this.generateMarkup(currentPage);
+    this.clearContainer();
     this.containerEl.insertAdjacentHTML('afterbegin', markup);
+    this.containerEl.scrollIntoView();
   }
 
   generateMarkup() {
     return this.data
       .map(page => {
-        return `<li class="page-list"><button class="page-list-btn">${page}</button></li>`;
+        return `<li class="page-list"><button class="page-list-btn ${
+          this.currentPage === page ? 'btn-active' : ''
+        }">${page}</button></li>`;
       })
       .join('');
   }
 
   eventHandler(callback) {
     this.containerEl.addEventListener('click', function (e) {
-      const btn = e.target.classList.contains('page-list-btn');
+      const btn = e.target.closest('.page-list-btn');
       if (!btn) return;
       const page = e.target.innerHTML;
       callback(page);

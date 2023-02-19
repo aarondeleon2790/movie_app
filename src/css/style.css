@@ -51,6 +51,10 @@ button {
   cursor: pointer;
 }
 
+.btn-active {
+  color: white;
+}
+
 .split {
   /* display: flex;
   gap: 1em;
