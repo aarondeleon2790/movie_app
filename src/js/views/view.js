@@ -5,7 +5,7 @@ export default class View {
     const markup = this.generateMarkup();
     this.clearContainer();
     this.containerEl.insertAdjacentHTML('afterbegin', markup);
-    this.containerEl.scrollIntoView();
+    this.containerEl.scrollIntoView(false);
   }
 
   //fix spinner /needs animation for spinner

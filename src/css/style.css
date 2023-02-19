@@ -51,10 +51,6 @@ button {
   cursor: pointer;
 }
 
-.btn-active {
-  color: white;
-}
-
 .split {
   /* display: flex;
   gap: 1em;
@@ -278,7 +274,7 @@ button {
 
 .feat-mov-desc p {
   font-size: 1rem;
-  color: rgb(131, 129, 131);
+  color: rgb(182, 180, 182);
 }
 
 /* Search Results */
@@ -322,11 +318,31 @@ button {
 
 .swiper-button-next,
 .swiper-button-prev {
-  --swiper-navigation-color: white;
+  --swiper-navigation-color: white
   --swiper-navigation-top-offset: 60%;
   font-weight: bold;
 }
 
+/* Popular movies pagination */
+
+.page-lists {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3em;
+  padding: 0.5em;
+}
+
+.page-list-btn {
+  padding: 0.5em;
+  background: var(--bg-secondary);
+  border-radius: 10px;
+  color: white;
+}
+
+.btn-active {
+  border: 1px solid white;
+}
 /* movie list popular */
 
 .mov-popular-bar {
