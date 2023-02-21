@@ -63,7 +63,7 @@ const loadPagination = function (currentPage = 1) {
   const page = Number(currentPage);
   // prettier-ignore
   const pageData = generatePagination(popularMod.state.totalPages, MAXPAGINATIONDISPLAY, page);
-  paginationView.render(pageData, page);
+  paginationView.render(pageData, popularMod.state.totalPages, currentPage);
 };
 
 const generatePagination = function (totalPage, maxDisplay, currentPage) {
@@ -92,7 +92,7 @@ async function init() {
   await loadTrailer();
   trailerView.eventHandler(loadTrailer);
   searchView.eventHandler(loadSearch);
-  paginationView.eventHandler(loadPage);
+  paginationView.eventHandler(loadPage, loadPagination);
 }
 
 init();
