@@ -7,11 +7,26 @@ class PaginationView extends View {
   render(data, currentPage) {
     this.data = data;
     this.currentPage = currentPage;
+    this.checkStartBtn();
     const markup = this.generateMarkup(currentPage);
     this.clearContainer();
     this.containerEl.insertAdjacentHTML('afterbegin', markup);
     this.containerEl.scrollIntoView();
   }
+
+  checkStartBtn() {
+    //prettier-ignore
+    const pageStart = this.containerEl.closest('.pagination').querySelector('.page-start');
+    //prettier-ignore
+    const pageEnd = this.containerEl.closest('.pagination').querySelector('.page-end');
+    const halfOfDisplay = Math.ceil(this.data.length + 1) / 2;
+    pageStart.classList.remove('disabled');
+    if (this.currentPage <= halfOfDisplay) {
+      pageStart.classList.add('disabled');
+    }
+  }
+
+  checkEndBtn() {}
 
   generateMarkup() {
     return this.data

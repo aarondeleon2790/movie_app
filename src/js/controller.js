@@ -61,24 +61,21 @@ const loadSearch = async function () {
 const loadPagination = function (currentPage = 1) {
   // popularMod.state.totalPages;
   const page = Number(currentPage);
-  const pageData = generatePagination(
-    popularMod.state.totalPages,
-    MAXPAGINATIONDISPLAY,
-    page
-  );
+  // prettier-ignore
+  const pageData = generatePagination(popularMod.state.totalPages, MAXPAGINATIONDISPLAY, page);
   paginationView.render(pageData, page);
 };
 
-const generatePagination = function (totalPage, maxDisplayed, currentPage) {
-  const half = Math.ceil(maxDisplayed / 2);
+const generatePagination = function (totalPage, maxDisplay, currentPage) {
+  const half = Math.ceil(maxDisplay / 2);
   let start = currentPage - half;
   if (currentPage + half >= totalPage) {
-    start = totalPage - maxDisplayed;
+    start = totalPage - maxDisplay;
   }
   if (start <= 0) {
     start = 0;
   }
-  return Array.from({ length: maxDisplayed }, (_, index) => index + 1 + start);
+  return Array.from({ length: maxDisplay }, (_, index) => index + 1 + start);
 };
 
 const loadPage = async function (page) {

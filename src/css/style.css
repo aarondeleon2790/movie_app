@@ -73,6 +73,13 @@ button {
   display: none;
 }
 
+
+.disabled {
+  background: gray !important;
+  cursor: default;
+  opacity: .7;
+  color: rgb(192, 191, 191) !important;
+}
 .result-error {
   font-size: 1.1rem;
   padding: 1rem 3rem;

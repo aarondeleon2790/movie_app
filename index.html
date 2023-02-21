@@ -103,8 +103,18 @@
           </div>
         </div>
 
-        <div class="pagination" style="text-align: center">
+        <div
+          class="pagination"
+          style="
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          "
+        >
+          <button class="page-list-btn page-start disabled">start</button>
           <ul class="page-lists"></ul>
+          <button class="page-list-btn page-end">end</button>
         </div>
         <div class="mov-list-container">
           <!-- list of movies goes here -->
