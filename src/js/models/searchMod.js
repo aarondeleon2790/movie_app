@@ -9,11 +9,10 @@ export const state = {
 export async function searchQuery(query) {
   try {
     state.query.push(query);
-    console.log(state.query);
     //prettier-ignore
     const data = await getJSON(`${APIURL}search/movie?api_key=${APIKEY}&query=${query}`);
     const { results } = data;
-    console.log(data);
+
     if (results.length === 0) {
       throw new Error();
     }

@@ -7,4 +7,4 @@ export const TRAILER =
 export const TIMER = 600;
 //this will depend on api but max set to 100 since api results not accurate
 export const MAXPAGERESULT = 100;
-export const MAXPAGINATIONDISPLAY = 20;
+export const MAXPAGINATIONDISPLAY = 15;

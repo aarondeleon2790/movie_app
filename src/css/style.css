@@ -340,8 +340,12 @@ button {
   color: white;
 }
 
+.page-list-btn:hover {
+  background: var(--text-primary);
+}
+
 .btn-active {
-  border: 1px solid white;
+  background: var(--color-accent)
 }
 /* movie list popular */
 
