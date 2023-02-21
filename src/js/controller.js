@@ -92,7 +92,7 @@ async function init() {
   await loadTrailer();
   trailerView.eventHandler(loadTrailer);
   searchView.eventHandler(loadSearch);
-  paginationView.eventHandler(loadPage, loadPagination);
+  paginationView.eventHandler(loadPage);
 }
 
 init();
