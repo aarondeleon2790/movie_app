@@ -26,16 +26,23 @@ class PaginationView extends View {
   }
 
   generateStartBtn() {
-    if (this.currentPage >= this.halfOfDisplayedPage) {
+    //code for adding start of page button
+    // if (this.currentPage >= this.halfOfDisplayedPage)
+    if (this.currentPage > 1) {
       return `
             <li class="page-list">
                 <button class="page-list-btn page-navigate" data-page-number="${
-                  -this.currentPage + 1
+                  //this code is for adding start of page button
+                  // -this.currentPage + 1
+                  -this.maxDisplayedPage
                 }"><<</button>
             </li>
             <li class="page-list">
-                <button class="page-list-btn page-navigate" data-page-number="${-this
-                  .maxDisplayedPage}"><</button>
+                <button class="page-list-btn page-navigate" data-page-number="${
+                  //code for adding start of page button
+                  // -this.maxDisplayedPage
+                  -1
+                }"><</button>
             </li>
             `;
     }
@@ -43,15 +50,24 @@ class PaginationView extends View {
   }
 
   generateEndBtn() {
-    if (this.currentPage + this.halfOfDisplayedPage < this.totalPages) {
+    //code for adding end of page button
+    // if (this.currentPage + this.halfOfDisplayedPage < this.totalPages)
+    if (this.currentPage < this.totalPages) {
       return `
               <li class="page-list">
-                <button class="page-list-btn page-navigate" data-page-number="${
-                  this.maxDisplayedPage
-                }">></button>
+                <button class="page-list-btn page-navigate" data-page-number="
+                ${
+                  // code for adding end of page button
+                  // this.maxDisplayedPage
+                  1
+                }
+                
+                ">></button>
               </li>
               <li class="page-list"><button class="page-list-btn page-navigate" data-page-number="${
-                this.totalPages - this.currentPage
+                // code for adding end of page button
+                // this.totalPages - this.currentPage
+                this.maxDisplayedPage
               }">>></button></li>
               `;
     }
@@ -77,21 +93,26 @@ class PaginationView extends View {
     this.maxDisplayedPage = this.data.length;
   }
 
+  generatePageNavigation(targetEl) {
+    const pageNumber = Number(targetEl.dataset.pageNumber);
+    if (targetEl.classList.contains('page-navigate')) {
+      let prevPage = this.currentPage + pageNumber;
+      if (prevPage > this.totalPages) {
+        prevPage = this.totalPages;
+      }
+      if (prevPage < 1) {
+        prevPage = 1;
+      }
+      return prevPage;
+    } else return pageNumber;
+  }
+
   eventHandler(loadpage) {
     this.containerEl.addEventListener('click', e => {
       const btn = e.target.closest('.page-list-btn');
       if (!btn) return;
-      const pageNumber = Number(e.target.dataset.pageNumber);
-      if (e.target.classList.contains('page-navigate')) {
-        let prevPage = this.currentPage + pageNumber;
-        if (prevPage > this.totalPages) {
-          prevPage = this.totalPages;
-        }
-        if (prevPage < 1) {
-          prevPage = 1;
-        }
-        loadpage(prevPage);
-      } else loadpage(pageNumber);
+      const pageNumber = this.generatePageNavigation(btn);
+      loadpage(pageNumber);
     });
   }
 }
